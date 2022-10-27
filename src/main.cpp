@@ -1,43 +1,67 @@
+#include <iostream>
+
 #include "raylib.h"
+#define RAYGUI_IMPLEMENTATION
+#include "raygui.h"
 
-//------------------------------------------------------------------------------------
-// Program main entry point
-//------------------------------------------------------------------------------------
-int main(void)
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+
+int main()
 {
-    // Initialization
-    //--------------------------------------------------------------------------------------
-    const int screenWidth = 800;
-    const int screenHeight = 450;
+    bool play = true;
+    bool fullscreen = true;
+    bool exitB = true;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
+    SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Educational Travelers");
 
-    SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+    SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
-        //----------------------------------------------------------------------------------
-        // TODO: Update your variables here
-        //----------------------------------------------------------------------------------
 
-        // Draw
-        //----------------------------------------------------------------------------------
-        BeginDrawing();
+        BeginDrawing();     
 
             ClearBackground(RAYWHITE);
 
-            DrawText("Congrats! You created your first window!", 190, 200, 20, LIGHTGRAY);
+            if (play) 
+            {
+                DrawText("Educational Travelers", SCREEN_WIDTH / 2.0f - 310, 270, 50, DARKBLUE);
+
+                play = !GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 405, 200, 100}, "Play");
+                
+                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 540, 200, 100}, "Fullscreen"))
+                {
+                    ToggleFullscreen();
+                    if (IsWindowFullscreen()) { 
+                        // SetWindowSize(GetMonitorHeight(0), GetMonitorHeight(0)); // returns wrong values
+                        SetWindowSize(1920, 1200); // hardcoded values work fine!
+                    } 
+                    else {
+                        SetWindowSize(1920, 1080);
+                    }
+                }
+
+                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 675, 200, 100}, "Exit"))
+                {
+                    CloseWindow();
+                }
+            }
+            else if (!play)
+            { 
+                
+            }            
+
 
         EndDrawing();
         //----------------------------------------------------------------------------------
     }
 
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
-    CloseWindow();        // Close window and OpenGL context
+    CloseWindow();          // Close window and OpenGL context
+
     //--------------------------------------------------------------------------------------
 
     return 0;
