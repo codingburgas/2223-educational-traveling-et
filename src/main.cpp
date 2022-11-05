@@ -52,11 +52,46 @@ int main()
                 if (!pause)
                 {
                     DrawTexture(texture, SCREEN_WIDTH/2 - texture.width/2, SCREEN_HEIGHT/2 - texture.height/2, WHITE);
-                    if(GuiButton((Rectangle) { 1100, 850, 50, 25}, "Bulgaria"))
-                    {
-                            
-                    }
-                    
+
+                    Bulgaria();
+                    Romania();
+                    Serbia();
+                    Macedonia();
+                    Greece();
+                    Albania();
+                    Turkey();
+                    Montenegro();
+                    Kosovo();
+                    Bosnia();
+                    Moldova();
+                    Ukraine();
+                    Russia();
+                    Belarus();
+                    Finland();
+                    Sweden();
+                    Norway();
+                    Estonia();
+                    Latvia();
+                    Poland();
+                    Slovakia();
+                    Hungary();
+                    Croatia();
+                    Slovenia();
+                    Austria();
+                    Czech();
+                    Germany();
+                    Netherlands();
+                    Denmark();
+                    Belgium();
+                    Switz();
+                    France();
+                    Italy();
+                    Spain();
+                    Portugal();
+                    UK();
+                    Ireland();
+                    Iceland();
+
                     if(showList)
                     {
                         DrawText("Visited countries", 0, 100, 20, DARKBLUE);
