@@ -26,7 +26,7 @@ int main()
             if (play) 
             {
                 DrawText("Educational Travelers", SCREEN_WIDTH / 2.0f - 310, 270, 50, DARKBLUE);
-
+                
                 play = !GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 405, 200, 100}, "Play");
                 pause = false;
 
@@ -52,7 +52,7 @@ int main()
                 if (!pause)
                 {
                     DrawTexture(texture, SCREEN_WIDTH/2 - texture.width/2, SCREEN_HEIGHT/2 - texture.height/2, WHITE);
-
+                    
                     Bulgaria();
                     Romania();
                     Serbia();
@@ -91,10 +91,12 @@ int main()
                     UK();
                     Ireland();
                     Iceland();
+                    Lithuania();
 
                     if(showList)
                     {
                         DrawText("Visited countries", 0, 100, 20, DARKBLUE);
+                        
                         showList = !GuiButton((Rectangle) { 0, 0, 200, 100}, "Hide list");
                     }
                     else if (!showList)
@@ -126,7 +128,7 @@ int main()
                 }
             }            
 
-
+            
         EndDrawing();
         SetExitKey(KEY_NULL);
         //----------------------------------------------------------------------------------
