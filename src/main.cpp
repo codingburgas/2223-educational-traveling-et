@@ -1,6 +1,9 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 
 #include "../include/game.h"
+#include "../include/countries.h"
 #include "../include/global_variables.h"
 
 int main()
@@ -53,7 +56,13 @@ int main()
                 {
                     DrawTexture(texture, SCREEN_WIDTH/2 - texture.width/2, SCREEN_HEIGHT/2 - texture.height/2, WHITE);
                     
-                    Bulgaria();
+                    // Start scene
+                    start();
+
+                    // Your current balance
+                    balance(bal);
+
+                    // Functionality for all countries
                     Romania();
                     Serbia();
                     Macedonia();
@@ -97,11 +106,30 @@ int main()
                     {
                         DrawText("Visited countries", 0, 100, 20, DARKBLUE);
                         
+                        int numberOfCountries = visitedCountries.size();
+
+                        int newline = 0;
+                        for (int i = 0; i < numberOfCountries; i++)
+                        {
+                            DrawText(TextFormat("%i. %s", i + 1, visitedCountries[i].c_str()), 0, 120 + newline, 25, DARKBLUE);
+                            newline += 25;
+                        }
+
                         showList = !GuiButton((Rectangle) { 0, 0, 200, 100}, "Hide list");
+
                     }
                     else if (!showList)
                     {
                         showList = GuiButton((Rectangle) { 0, 0, 200, 100}, "Show list");
+                    }
+
+                    if(quiz)
+                    {
+                        quiz = !GuiButton((Rectangle) {1720, 980, 200, 100}, "Quiz");
+                    }
+                    else if (!quiz)
+                    {
+                        DrawRectangle(400, 200, 1200, 800, WHITE);
                     }
 
                     pause = GuiButton((Rectangle) { 1720, 0, 200, 100}, "Options");
@@ -125,6 +153,10 @@ int main()
                     {
                         CloseWindow();
                     }
+                }
+                else if (!quiz)
+                {
+
                 }
             }            
 
