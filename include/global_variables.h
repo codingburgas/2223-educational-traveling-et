@@ -21,11 +21,13 @@ extern bool exitB = true;
 extern bool showList = true;
 extern bool pause = false;
 extern bool quiz = true;
-extern int readMess = 1; 
+extern bool answered = true;
+extern int questionNum = 0;
+extern int readMess = 1;
 
 extern std::vector<std::string> visitedCountries{"Bulgaria"};
 
-extern int bal = 300; // 300 is the start amount of the journey 
+extern int money = 300; // 300 is the start amount of the journey 
 
 extern bool romania = true;
 extern bool serbia = true;
