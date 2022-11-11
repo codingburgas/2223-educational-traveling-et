@@ -56,7 +56,85 @@ void questions(int questionNum, std::string* question, std::string* answer1str, 
             *answer4 = false;
             break;
         }
+
     }
+}
+
+void balance()
+{
+    std::ifstream moneyInput;
+    moneyInput.open("money.txt");
+
+    if (moneyInput.is_open())
+    {
+        int temp;
+        moneyInput >> temp;
+
+        if (temp > money)
+            money = temp;
+
+        moneyInput.close();
+    }
+
+    int moneyFromFile = money;
+    moneyInput >> moneyFromFile;
+
+    std::ofstream moneyOutput;
+    moneyOutput.open("money.txt");
+    if (money < moneyFromFile)
+        moneyOutput << moneyFromFile;
+    else
+        moneyOutput << money;
+    moneyOutput.close();
+}
+
+void countries()
+{
+    std::ifstream countriesInput;
+    countriesInput.open("countries.txt");
+    if (countriesInput.is_open())
+    {
+
+        std::stringstream buffer;
+        buffer << countriesInput.rdbuf();
+
+        std::string fileContent;
+        fileContent = buffer.str();
+
+        int length = 1;
+        for (int i = 0; i < fileContent.length(); i++)
+        {
+            if (fileContent[i] == ' ')
+                length++;
+        }
+
+        std::string arr[50];
+        std::stringstream ssin(fileContent);
+
+        for (int i = 0; ssin.good() && i < length; ++i)
+            ssin >> arr[i];
+
+        if (runOnlyOneTime == 0)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                visitedCountries.push_back(arr[i]);
+            }
+        }
+        runOnlyOneTime++;
+
+        countriesInput.close();
+    }
+
+    // std::ofstream countriesOutput;
+    // countriesOutput.open("countries.txt");
+    // int numberOfCountries = visitedCountries.size();
+
+    // for (int i = 0; i < numberOfCountries; i++)
+    // {
+    //     countriesOutput << visitedCountries[i] << " ";
+    // }
+    // countriesOutput.close();
 }
 
 #endif

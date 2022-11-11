@@ -1,7 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <algorithm>
-
 #include "../include/game.h"
 #include "../include/countries.h"
 #include "../include/global_variables.h"
@@ -53,6 +49,9 @@ int main()
             }
             else if (!play)
             { 
+                balance();
+                countries();
+
                 if (!pause)
                 {
                     DrawTexture(texture, SCREEN_WIDTH/2 - texture.width/2, SCREEN_HEIGHT/2 - texture.height/2, WHITE);

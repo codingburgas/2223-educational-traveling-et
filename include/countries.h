@@ -7,14 +7,22 @@ void Romania()
 {
     if(romania)
     {
-        romania = !GuiButton((Rectangle) { 1071, 769, 50, 25}, "Romania");       
+        romania = !GuiButton((Rectangle) { 1071, 769, 50, 25}, "Romania"); 
+        for (auto i : visitedCountries)
+        {
+            if (i == "Romania")
+            {
+                romania = false;
+                break;
+            }
+        }        
     }
     else if (!romania)
     {
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Romania") == visitedCountries.end())
         {
             visitedCountries.push_back("Romania");
-        }  
+        }
 
         DrawText("Romania", 1071, 769, 20, BLACK);
     }

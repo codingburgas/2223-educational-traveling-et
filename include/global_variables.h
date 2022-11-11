@@ -1,9 +1,14 @@
 #ifndef GLOBAL_VARIABLES
 #define GLOBAL_VARIABLES
 
+#include <iostream>
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <fstream> 
+#include <sstream>
+#include <cassert>
+#include <iterator>
 #include "raylib.h"
 #include "rlgl.h"
 #include "raymath.h"
@@ -22,10 +27,12 @@ extern bool showList = true;
 extern bool pause = false;
 extern bool quiz = true;
 extern bool answered = true;
+extern bool addContentToFile = true;
 extern int questionNum = 0;
 extern int readMess = 1;
+int runOnlyOneTime = 0;
 
-extern std::vector<std::string> visitedCountries{"Bulgaria"};
+extern std::vector<std::string> visitedCountries{};
 
 extern int money = 300; // 300 is the start amount of the journey 
 
