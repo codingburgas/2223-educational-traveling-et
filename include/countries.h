@@ -32,7 +32,15 @@ void Serbia()
 {
     if(serbia)
     {
-        serbia = !GuiButton((Rectangle) { 973, 825, 50, 25}, "Serbia");       
+        serbia = !GuiButton((Rectangle) { 973, 825, 50, 25}, "Serbia");
+        for (auto i : visitedCountries)
+        {
+            if (i == "Serbia")
+            {
+                serbia = false;
+                break;
+            }
+        }         
     }
     else if (!serbia)
     {
@@ -47,9 +55,26 @@ void Serbia()
 
 void Macedonia()
 {
-    if(GuiButton((Rectangle) { 1020, 897, 65, 25}, "Macedonia"))
+    if(macedonia)
     {
-                            
+        macedonia = !GuiButton((Rectangle) { 1020, 897, 65, 25}, "Macedonia");
+        for (auto i : visitedCountries)
+        {
+            if (i == "Macedonia")
+            {
+                macedonia = false;
+                break;
+            }
+        }         
+    }
+    else if (!macedonia)
+    {
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Macedonia") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Macedonia");
+        }  
+
+        DrawText("Macedonia", 1020, 897, 20, BLACK);
     }      
 }
 

@@ -60,7 +60,7 @@ void questions(int questionNum, std::string* question, std::string* answer1str, 
 
         case 3:
         {
-            *question = "Transylvania is now a region in Romania. Before World War I it belonged to which country?";
+            *question = "Transylvania is now a region in Romania. \nBefore World War I it belonged to which country?";
             *answer1str = "Serbia";
             *answer2str = "Hungary";
             *answer3str = "Bulgaria";
@@ -122,7 +122,7 @@ void questions(int questionNum, std::string* question, std::string* answer1str, 
         //Questions about Serbia
         case 7:
         {
-            *question = "We owe the invention of alternating current generators and motors to which of these people?";
+            *question = "We owe the invention of alternating current\n generators and motors to which of these people?";
             *answer1str = "Marconi Guglielmo";
             *answer2str = "Nikola Tesla";
             *answer3str = "Thomas Alva Edison";
@@ -137,7 +137,7 @@ void questions(int questionNum, std::string* question, std::string* answer1str, 
 
         case 8:
         {
-            *question = "The Cyrillic alphabet, used today in Serbia, was invented by St. Cyril (Constantine) and St. Methodius in the 9th century AD. On which older alphabet was it based?";
+            *question = "The Cyrillic alphabet, used today in Serbia, was invented by St. Cyril (Constantine) and St. Methodius\n in the 9th century AD. On which older alphabet was it based?";
             *answer1str = "Runes (Gothic)";
             *answer2str = "Aramaic";
             *answer3str = "Greek";
@@ -256,7 +256,7 @@ void countries()
         fileContent = buffer.str();
 
         int length = 1;
-        for (int i = 0; i < fileContent.length(); i++)
+        for (int i = 1; i < fileContent.length(); i++)
         {
             if (fileContent[i] == ' ')
                 length++;
@@ -272,7 +272,8 @@ void countries()
         {
             for (int i = 0; i < length; i++)
             {
-                visitedCountries.push_back(arr[i]);
+                if (arr[i] != " ")
+                    visitedCountries.push_back(arr[i]); 
             }
         }
         runOnlyOneTime++;
@@ -280,15 +281,83 @@ void countries()
         countriesInput.close();
     }
 
-    // std::ofstream countriesOutput;
-    // countriesOutput.open("countries.txt");
-    // int numberOfCountries = visitedCountries.size();
+    int numberOfCountries = visitedCountries.size();
 
-    // for (int i = 0; i < numberOfCountries; i++)
-    // {
-    //     countriesOutput << visitedCountries[i] << " ";
-    // }
-    // countriesOutput.close();
+    if (numberOfCountries > 1)
+    {
+        std::ofstream countriesOutput;
+        countriesOutput.open("countries.txt");
+        
+        for (int i = 0; i < numberOfCountries; i++)
+        {
+            countriesOutput << visitedCountries[i];
+            if (visitedCountries[i] != " ")
+                countriesOutput << " "; 
+        }
+        countriesOutput.close();
+    }
+}
+
+void questionAnswered()
+{
+    std::ifstream questionsInput;
+    questionsInput.open("questionAnswered.txt");
+
+    if (questionsInput.is_open())
+    {
+        int temp;
+        questionsInput >> temp;
+
+        if (temp > questionAnsweredNum)
+            questionAnsweredNum = temp;
+
+        questionsInput.close();
+    }
+
+    int quetionsFromFile = questionAnsweredNum;
+    questionsInput >> quetionsFromFile;
+
+    std::ofstream quetionsOutput;
+    quetionsOutput.open("questionAnswered.txt");
+    if (questionAnsweredNum < quetionsFromFile)
+        quetionsOutput << quetionsFromFile;
+    else
+        quetionsOutput << questionAnsweredNum;
+}
+
+void clearSaveFile()
+{
+    std::fstream money;
+    money.open("money.txt", std::ofstream::out | std::ofstream::trunc);
+
+    std::fstream countries;
+    countries.open("countries.txt", std::ofstream::out | std::ofstream::trunc);
+    
+    std::fstream questions;
+    questions.open("questionAnswered.txt", std::ofstream::out | std::ofstream::trunc);
+
+    money.clear();
+    countries.clear();
+    questions.clear();
+
+    if (money.is_open())
+        money << "300";     
+
+    if (questions.is_open())
+        questions << "1";
+        
+    money.close();
+    countries.close();
+    questions.close();
+}
+
+void travel()
+{
+    DrawRectangle(400, 300, 1200, 400, WHITE);
+
+    if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, "Travel with plane")) { money += 100; quiz = true; answered = true;}
+    else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, "Travel with car")) { quiz = true; answered = true;}
+    else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, "Travel with train")) { quiz = true; answered = true;}
 }
 
 #endif

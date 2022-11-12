@@ -29,10 +29,11 @@ extern bool quiz = true;
 extern bool answered = true;
 extern bool addContentToFile = true;
 extern int questionNum = 0;
+extern int questionAnsweredNum = 1;
 extern int readMess = 1;
 int runOnlyOneTime = 0;
 
-extern std::vector<std::string> visitedCountries{};
+extern std::vector<std::string> visitedCountries;
 
 extern int money = 300; // 300 is the start amount of the journey 
 

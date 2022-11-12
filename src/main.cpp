@@ -2,6 +2,8 @@
 #include "../include/countries.h"
 #include "../include/global_variables.h"
 
+std::vector<std::string> visitedCountries;
+
 int main()
 {
     srand(time(NULL));
@@ -25,6 +27,11 @@ int main()
 
             if (play) 
             {
+                if (GuiButton((Rectangle) { 1720, 0, 200, 100}, "Delete data from save files"))
+                {
+                    clearSaveFile();
+                }
+
                 DrawText("Educational Travelers", SCREEN_WIDTH / 2.0f - 310, 270, 50, DARKBLUE);
                 
                 play = !GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 405, 200, 100}, "Play");
@@ -51,6 +58,7 @@ int main()
             { 
                 balance();
                 countries();
+                questionAnswered();
 
                 if (!pause)
                 {
@@ -104,16 +112,26 @@ int main()
 
                     if(showList)
                     {
+
                         DrawText("Visited countries", 0, 100, 20, DARKBLUE);
                         
                         int numberOfCountries = visitedCountries.size();
 
+                        std::cout << "\"";
+
                         int newline = 0;
+                        int counter = 1;
                         for (int i = 0; i < numberOfCountries; i++)
                         {
-                            DrawText(TextFormat("%i. %s", i + 1, visitedCountries[i].c_str()), 0, 120 + newline, 25, DARKBLUE);
-                            newline += 25;
+                            if (visitedCountries[i] != "")
+                            {    
+                                DrawText(TextFormat("%i. %s", counter, visitedCountries[i].c_str()), 0, 120 + newline, 25, DARKBLUE);
+                                newline += 25;
+                                counter++;
+                            }
                         }
+
+                        std::cout << "\"\n";
 
                         showList = !GuiButton((Rectangle) { 0, 0, 200, 100}, "Hide list");
 
@@ -126,53 +144,58 @@ int main()
                     if(quiz)
                     {
                         quiz = !GuiButton((Rectangle) {1720, 980, 200, 100}, "Quiz");
+                        if (questionAnsweredNum == 20)
+                            quiz = false;
                     }
                     else if (!quiz)
                     {
-                        if (answered)
-                            questionNum = rand() % 2 + 1;
-
-                        answered = false;
-
-                        DrawRectangle(400, 380, 1200, 400, WHITE);
-                        std::string question, answer1str, answer2str, answer3str, answer4str;
-                        bool answer1, answer2, answer3, answer4;
-
-                        questions(questionNum, &question, &answer1str, &answer2str, &answer3str, &answer4str, &answer1, &answer2, &answer3, &answer4);
-
-                        int lengthOfQuestion = question.length();
-
-                        DrawText(TextFormat("%s", question.c_str()), 400 + lengthOfQuestion * 8, 400, 25, DARKBLUE);
-
-                        if (answer1 == true)
+                        if (questionAnsweredNum != 20)
                         {
-                            if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { money += 100; quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true;}
-                        }
-                        else if (answer2 == true)
-                        {
-                            if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { money += 100; quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true;}
-                        }
-                        else if (answer3 == true)
-                        {
-                            if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { money += 100; quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true;}
-                        }
-                        else if (answer4 == true)
-                        {
-                            if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true;}
-                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { money += 100; quiz = true; answered = true;}
-                        }
+                            if (answered)
+                                questionNum = rand() % 12 + 1;
 
+                            answered = false;
+
+                            DrawRectangle(400, 380, 1200, 400, WHITE);
+                            std::string question, answer1str, answer2str, answer3str, answer4str;
+                            bool answer1, answer2, answer3, answer4;
+
+                            questions(questionNum, &question, &answer1str, &answer2str, &answer3str, &answer4str, &answer1, &answer2, &answer3, &answer4);
+
+                            int lengthOfQuestion = question.length();
+
+                            DrawText(TextFormat("%s", question.c_str()), 415, 400, 25, DARKBLUE);
+                            DrawText(TextFormat("%i/20", questionAnsweredNum), 415, 740, 25, DARKBLUE);
+
+                            if (answer1 == true)
+                            {
+                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                            }
+                            else if (answer2 == true)
+                            {
+                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                            }
+                            else if (answer3 == true)
+                            {
+                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                            }
+                            else if (answer4 == true)
+                            {
+                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
+                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
+                            }                            
+                        }
                     }
 
                     pause = GuiButton((Rectangle) { 1720, 0, 200, 100}, "Options");
