@@ -27,6 +27,7 @@ void questions(int questionNum, std::string* question, std::string* answer1str, 
 
     switch(questionNum)
     {
+        //Questions about Romania
         case 1:
         {
             *question = "Which castle is located in Romania?";
@@ -45,14 +46,167 @@ void questions(int questionNum, std::string* question, std::string* answer1str, 
         case 2:
         {
             *question = "What are the colors of the Romanian flag?";
-            *answer1str = "red, yellow and blue";
+            *answer1str = "red, white and blue";
             *answer2str = "red, green and blue";
             *answer3str = "red, black and blue";
-            *answer4str = "red, white and blue";
+            *answer4str = "red, yellow and blue";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = true;
+            break;
+        }
+
+        case 3:
+        {
+            *question = "Transylvania is now a region in Romania. Before World War I it belonged to which country?";
+            *answer1str = "Serbia";
+            *answer2str = "Hungary";
+            *answer3str = "Bulgaria";
+            *answer4str = "Ukraine";
+
+            *answer1 = false;
+            *answer2 = true;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        //Questions about Hungary
+        case 4:
+        {
+            *question = "With how many countries does Hungary border?";
+            *answer1str = "6";
+            *answer2str = "8";
+            *answer3str = "7";
+            *answer4str = "4";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = true;
+            *answer4 = false;
+            break;
+        }
+
+        case 5:
+        {
+            *question = "What is the main river that runs through Hungary?";
+            *answer1str = "Tisza";
+            *answer2str = "Danube";
+            *answer3str = "Drava";
+            *answer4str = "Raba";
+
+            *answer1 = false;
+            *answer2 = true;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 6:
+        {
+            *question = "What is the official currency of Hungary?";
+            *answer1str = "Lek";
+            *answer2str = "Dram";
+            *answer3str = "Manat";
+            *answer4str = "Forint";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = true;
+            break;
+        }
+
+        //Questions about Serbia
+        case 7:
+        {
+            *question = "We owe the invention of alternating current generators and motors to which of these people?";
+            *answer1str = "Marconi Guglielmo";
+            *answer2str = "Nikola Tesla";
+            *answer3str = "Thomas Alva Edison";
+            *answer4str = "Westinghouse George";
+
+            *answer1 = false;
+            *answer2 = true;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 8:
+        {
+            *question = "The Cyrillic alphabet, used today in Serbia, was invented by St. Cyril (Constantine) and St. Methodius in the 9th century AD. On which older alphabet was it based?";
+            *answer1str = "Runes (Gothic)";
+            *answer2str = "Aramaic";
+            *answer3str = "Greek";
+            *answer4str = "Hebrew";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = true;
+            *answer4 = false;
+            break;
+        }
+
+        case 9:
+        {
+            *question = "The capital of Serbia is:";
+            *answer1str = "Budapest";
+            *answer2str = "Sofia";
+            *answer3str = "Paris";
+            *answer4str = "Belgrade";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = true;
+            break;
+        }
+
+        //Questions about Spain
+        case 10:
+        {
+            *question = "What is the longest river passing in Spain?";
+            *answer1str = "Ebro";
+            *answer2str = "Tajo";
+            *answer3str = "Guadiana";
+            *answer4str = "Segre";
 
             *answer1 = true;
             *answer2 = false;
             *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 11:
+        {
+            *question = "Which is the peninsula where Spain is located?";
+            *answer1str = "Balkan Peninsula";
+            *answer2str = "The Iberian Peninsula";
+            *answer3str = "Hel Peninsula";
+            *answer4str = "Heracles Peninsula";
+
+            *answer1 = false;
+            *answer2 = true;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 12:
+        {
+            *question = "Which one of these cities is located in Spain?";
+            *answer1str = "Lisbon";
+            *answer2str = "Vienna";
+            *answer3str = "Madrid";
+            *answer4str = "London";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = true;
             *answer4 = false;
             break;
         }
