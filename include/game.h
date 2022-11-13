@@ -211,6 +211,143 @@ void questions(int questionNum, std::string* question, std::string* answer1str, 
             break;
         }
 
+        //Questions about Portugal
+        case 13:
+        {
+            *question = "What is the population of Portugal?";
+            *answer1str = "10 million";
+            *answer2str = "15 million";
+            *answer3str = "12 million";
+            *answer4str = "20 million";
+
+            *answer1 = true;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 14:
+        {
+            *question = "Which is the city with the highest altitude in Portugal?";
+            *answer1str = "Viseu";
+            *answer2str = "Setubal";
+            *answer3str = "Porto";
+            *answer4str = "Guarda";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = true;
+            break;
+        }
+
+        case 15:
+        {
+            *question = "Which ocean lies on the western coast of Portugal?";
+            *answer1str = "Pacific Ocean";
+            *answer2str = "Atlantic Ocean";
+            *answer3str = "Indian Ocean";
+            *answer4str = "Arctic Ocean";
+
+            *answer1 = false;
+            *answer2 = true;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        //Questions about France
+        case 16:
+        {
+            *question = "Which is the largest lake in France?";
+            *answer1str = "Lake Annecy";
+            *answer2str = "Lac du Melu";
+            *answer3str = "Lac du Bourget";
+            *answer4str = "Lac Vert";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = true;
+            *answer4 = false;
+            break;
+        }
+
+        case 17:
+        {
+            *question = "The Pyrenees mountains separate France from which country?";
+            *answer1str = "Spain";
+            *answer2str = "Belgium";
+            *answer3str = "England";
+            *answer4str = "Germany";
+
+            *answer1 = true;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 18:
+        {
+            *question = "What natural feature separates Germany and France?";
+            *answer1str = "Bay of Biscay";
+            *answer2str = "Mont Blanc";
+            *answer3str = "The Alps";
+            *answer4str = "The Rhine river";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = true;
+            break;
+        }
+
+        //Questions about Switzerland
+        case 19:
+        {
+            *question = "Which is the mountain in Switzerland where you can visit the Ice Palace?";
+            *answer1str = "Schilthorn";
+            *answer2str = "The Jungfraujoch Pass";
+            *answer3str = "Titlis";
+            *answer4str = "The Eiger";
+
+            *answer1 = false;
+            *answer2 = true;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 20:
+        {
+            *question = "How many lakes does Switzerland have?";
+            *answer1str = "around 1500 lakes";
+            *answer2str = "1200";
+            *answer3str = "1000";
+            *answer4str = "900";
+
+            *answer1 = true;
+            *answer2 = false;
+            *answer3 = false;
+            *answer4 = false;
+            break;
+        }
+
+        case 21:
+        {
+            *question = "Where does the majority of the Swiss population live?";
+            *answer1str = "In Bern";
+            *answer2str = "In the Alps";
+            *answer3str = "In the Swiss Plateau (the Central Plateau)";
+            *answer4str = "In the Jura";
+
+            *answer1 = false;
+            *answer2 = false;
+            *answer3 = true;
+            *answer4 = false;
+            break;
+        }
     }
 }
 
