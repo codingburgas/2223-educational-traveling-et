@@ -1,6 +1,7 @@
 #include "../include/game.h"
 #include "../include/countries.h"
 #include "../include/global_variables.h"
+#include "../include/questions.h"
 
 std::vector<std::string> visitedCountries;
 

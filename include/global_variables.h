@@ -28,14 +28,21 @@ extern bool pause = false;
 extern bool quiz = true;
 extern bool answered = true;
 extern bool addContentToFile = true;
+extern bool haveTravel = true;
+
 extern int questionNum = 0;
 extern int questionAnsweredNum = 1;
 extern int readMess = 1;
-int runOnlyOneTime = 0;
+extern int runOnlyOneTime = 0;
+
+extern int plane = 0;
+extern int car = 0;
+extern int train = 0;
+extern bool hideTravelFunction = true;
 
 extern std::vector<std::string> visitedCountries;
 
-extern int money = 300; // 300 is the start amount of the journey 
+int money = 300; // 300 is the start amount of the journey 
 
 extern bool romania = true;
 extern bool serbia = true;

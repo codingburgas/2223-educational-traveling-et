@@ -8,6 +8,7 @@ void Romania()
     if(romania)
     {
         romania = !GuiButton((Rectangle) { 1071, 769, 50, 25}, "Romania"); 
+
         for (auto i : visitedCountries)
         {
             if (i == "Romania")
@@ -15,10 +16,15 @@ void Romania()
                 romania = false;
                 break;
             }
-        }        
+        }
+
+        hideTravelFunction = false;     
     }
     else if (!romania)
     {
+        if (!hideTravelFunction && romania == false)
+            travel();
+
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Romania") == visitedCountries.end())
         {
             visitedCountries.push_back("Romania");
