@@ -46,7 +46,9 @@ void Serbia()
                 serbia = false;
                 break;
             }
-        }         
+        }      
+
+        hideTravelFunction = false;   
     }
     else if (!serbia)
     {
@@ -72,6 +74,7 @@ void Macedonia()
                 break;
             }
         }         
+        hideTravelFunction = false;
     }
     else if (!macedonia)
     {
@@ -86,74 +89,281 @@ void Macedonia()
 
 void Greece()
 {
-    if(GuiButton((Rectangle) { 1025, 941, 50, 25}, "Greece"))
+    if(greece)
     {
-                            
-    }      
+        greece = !GuiButton((Rectangle) { 1025, 941, 50, 25}, "Greece"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Greece")
+            {
+                greece = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!greece)
+    {
+        if (!hideTravelFunction && greece == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Greece") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Greece");
+        }
+
+        DrawText("Greece", 1025, 941, 20, BLACK);
+    }
 }
 
 void Albania()
 {
-    if(GuiButton((Rectangle) { 960, 911, 60, 25}, "Albania"))
+    if(Albania)
     {
-                            
-    }      
+        albania = !GuiButton((Rectangle) {960, 911, 60, 25}, "Albania"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Albania")
+            {
+                albania = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!albania)
+    {
+        if (!hideTravelFunction && albania == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Albania") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Albania");
+        }
+
+        DrawText("Albania", 960, 911, 20, BLACK);
+    }
 }
 
 void Turkey()
 {
     if(GuiButton((Rectangle) { 1279, 916, 50, 25}, "Turkey"))
     {
-                            
-    }      
+        turkey = !GuiButton((Rectangle) { 1279, 916, 50, 25}, "Turkey"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Turkey")
+            {
+                turkey = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!turkey)
+    {
+        if (!hideTravelFunction && turkey == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Turkey") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Turkey");
+        }
+
+        DrawText("Turkey", 1279, 916, 20, BLACK);
+    }
 }
 
 void Montenegro()
 {
-    if(GuiButton((Rectangle) { 925, 873, 70, 25}, "Montenegro"))
+    if(Montenegro)
     {
-                            
-    }       
+        montenegro = !GuiButton((Rectangle) { 925, 873, 70, 25}, "Montenegro"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Montenegro")
+            {
+                montenegro = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!montenegro)
+    {
+        if (!hideTravelFunction && montenegro == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Montenegro") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Montenegro");
+        }
+
+        DrawText("Montenegro", 925, 873, 20, BLACK);
+    } 
 }
 
 void Kosovo()
 {
-    if(GuiButton((Rectangle) { 997, 875, 50, 25}, "Kosovo"))
+    if(Kosovo)
     {
-                            
-    }   
+        kosovo = !GuiButton((Rectangle) { 997, 875, 50, 25}, "Kosovo"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Kosovo")
+            {
+                kosovo = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!kosovo)
+    {
+        if (!hideTravelFunction && kosovo == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Kosovo") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Kosovo");
+        }
+
+        DrawText("Kosovo", 997, 875, 20, BLACK);
+    } 
 }
 
 void Bosnia()
 {
-    if(GuiButton((Rectangle) { 890, 830, 40, 25}, "B & H"))
+    if(bosnia)
     {
-                            
-    }       
+        bosnia = !GuiButton((Rectangle) { 890, 830, 40, 25}, "B & H"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "B & H")
+            {
+                bosnia = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!bosnia)
+    {
+        if (!hideTravelFunction && bosnia == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "B & H") == visitedCountries.end())
+        {
+            visitedCountries.push_back("B & H");
+        }
+
+        DrawText("B & H", 890, 830, 20, BLACK);
+    }    
 }
 
 void Moldova()
 {
-    if(GuiButton((Rectangle) { 1165, 730, 55, 25}, "Moldova"))
+    if(moldova)
     {
-                            
-    }   
+        moldova = !GuiButton((Rectangle) { 1165, 730, 55, 25}, "Moldova"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Moldova")
+            {
+                moldova = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!moldova)
+    {
+        if (!hideTravelFunction && moldova == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Moldova") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Moldova");
+        }
+
+        DrawText("Moldova", 1165, 730, 20, BLACK);
+    }    
 }
 
 void Ukraine()
 {
-    if(GuiButton((Rectangle) { 1200, 670, 50, 25}, "Ukraine"))
+    if(ukraine)
     {
-                            
-    }   
+        ukraine = !GuiButton((Rectangle) { 1200, 670, 50, 25}, "Ukraine"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Ukraine")
+            {
+                ukraine = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!ukraine)
+    {
+        if (!hideTravelFunction && ukraine == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Ukraine") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Ukraine");
+        }
+
+        DrawText("Ukraine", 1200, 670, 20, BLACK);
+    }    
 }
 
 void Russia()
 {
-    if(GuiButton((Rectangle) { 1250, 400, 45, 25}, "Russia"))
+    if(russia)
     {
-                            
-    }   
+          russia = !GuiButton((Rectangle) { 1250, 400, 45, 25}, "Russia"); 
+
+        for (auto i : visitedCountries)
+        {
+            if (i == "Russia")
+            {
+                russia = false;
+                break;
+            }
+        }
+
+        hideTravelFunction = false;     
+    }
+    else if (!russia)
+    {
+        if (!hideTravelFunction && russia == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Russia") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Russia");
+        }
+
+        DrawText("Russia", 1250, 400, 20, BLACK);
+    }    
 }
 
 void Belarus()
