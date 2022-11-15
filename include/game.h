@@ -44,7 +44,7 @@ void balance()
         int temp;
         moneyInput >> temp;
 
-        if(temp > money);
+        if(temp > money)
             money = temp;
 
         moneyInput.close();
@@ -55,6 +55,7 @@ void balance()
 
     std::ofstream moneyOutput;
     moneyOutput.open("money.txt");
+
     if (money < moneyFromFile)
         moneyOutput << moneyFromFile;
     else
@@ -200,7 +201,7 @@ void travel()
     moneyOutput.open("money.txt");
 
     moneyOutput << money;
-
+    
     moneyOutput.close();
 }
 

@@ -42,7 +42,7 @@ extern bool hideTravelFunction = true;
 
 extern std::vector<std::string> visitedCountries;
 
-int money = 300; // 300 is the start amount of the journey 
+extern int money = 300; // 300 is the start amount of the journey 
 
 extern bool romania = true;
 extern bool serbia = true;

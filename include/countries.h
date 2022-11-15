@@ -7,22 +7,16 @@ void Romania()
 {
     if(romania)
     {
-        romania = !GuiButton((Rectangle) { 1071, 769, 50, 25}, "Romania"); 
-        for (auto i : visitedCountries)
+        romania = !GuiButton((Rectangle) { 1071, 769, 50, 25}, "Romania");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Romania") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Romania")
-            {
-                romania = false;
-                hideTravelFunction = true;
-                break;
-            }
-            else
-            {
-                if (!romania)
-                    hideTravelFunction = false;
-                break;
-            }
+            romania = false;
+            hideTravelFunction = true;
         }
+    
     }
     else if (!romania)
     {
@@ -44,25 +38,17 @@ void Serbia()
     {
         serbia = !GuiButton((Rectangle) { 973, 825, 50, 25}, "Serbia");
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Serbia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Serbia")
-            {
-                serbia = false;
-                hideTravelFunction = true;
-                break;
-            }
-            else
-            {
-                if (!serbia)
-                    hideTravelFunction = false;
-                break;
-            }            
+            serbia = false;
+            hideTravelFunction = true;
         }  
     }
     else if (!serbia)
     {
-        if (!hideTravelFunction && serbia == false)
+        if (hideTravelFunction == false && serbia == false)
             travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Serbia") == visitedCountries.end())
@@ -79,25 +65,18 @@ void Macedonia()
     if(macedonia)
     {
         macedonia = !GuiButton((Rectangle) { 1020, 897, 65, 25}, "Macedonia");
-        for (auto i : visitedCountries)
+
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Macedonia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Macedonia")
-            {
-                macedonia = false;
-                hideTravelFunction = true;
-                break;
-            }
-            else
-            {
-                if (!macedonia)
-                    hideTravelFunction = false;
-                break;
-            } 
-        }         
+            macedonia = false;
+            hideTravelFunction = true;
+        }       
     }
     else if (!macedonia)
     {
-        if (!hideTravelFunction && romania == false)
+        if (hideTravelFunction == false && romania == false)
             travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Macedonia") == visitedCountries.end())
@@ -126,8 +105,8 @@ void Greece()
     }
     else if (!greece)
     {
-        if (!hideTravelFunction && greece == false)
-            travel();
+        // if (!hideTravelFunction && greece == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Greece") == visitedCountries.end())
         {
@@ -155,8 +134,8 @@ void Albania()
     }
     else if (!albania)
     {
-        if (!hideTravelFunction && albania == false)
-            travel();
+        // if (!hideTravelFunction && albania == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Albania") == visitedCountries.end())
         {
@@ -184,8 +163,8 @@ void Turkey()
     }
     else if (!turkey)
     {
-        if (!hideTravelFunction && turkey == false)
-            travel();
+        // if (!hideTravelFunction && turkey == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Turkey") == visitedCountries.end())
         {
@@ -213,8 +192,8 @@ void Montenegro()
     }
     else if (!montenegro)
     {
-        if (!hideTravelFunction && montenegro == false)
-            travel();
+        // if (!hideTravelFunction && montenegro == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Montenegro") == visitedCountries.end())
         {
@@ -242,8 +221,8 @@ void Kosovo()
     }
     else if (!kosovo)
     {
-        if (!hideTravelFunction && kosovo == false)
-            travel();
+        // if (!hideTravelFunction && kosovo == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Kosovo") == visitedCountries.end())
         {
@@ -271,8 +250,8 @@ void Bosnia()
     }
     else if (!bosnia)
     {
-        if (!hideTravelFunction && bosnia == false)
-            travel();
+        // if (!hideTravelFunction && bosnia == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "B&H") == visitedCountries.end())
         {
@@ -300,8 +279,8 @@ void Moldova()
     }
     else if (!moldova)
     {
-        if (!hideTravelFunction && moldova == false)
-            travel();
+        // if (!hideTravelFunction && moldova == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Moldova") == visitedCountries.end())
         {
@@ -329,8 +308,8 @@ void Ukraine()
     }
     else if (!ukraine)
     {
-        if (!hideTravelFunction && ukraine == false)
-            travel();
+        // if (!hideTravelFunction && ukraine == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Ukraine") == visitedCountries.end())
         {
@@ -358,8 +337,8 @@ void Russia()
     }
     else if (!russia)
     {
-        if (!hideTravelFunction && russia == false)
-            travel();
+        // if (!hideTravelFunction && russia == false)
+        //     travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Russia") == visitedCountries.end())
         {
