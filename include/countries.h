@@ -94,19 +94,18 @@ void Greece()
     {
         greece = !GuiButton((Rectangle) { 1025, 941, 50, 25}, "Greece"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Greece") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Greece")
-            {
-                greece = false;
-                break;
-            }
+            greece = false;
+            hideTravelFunction = true;
         }
     }
     else if (!greece)
     {
-        // if (!hideTravelFunction && greece == false)
-        //     travel();
+        if (hideTravelFunction == false && greece == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Greece") == visitedCountries.end())
         {
@@ -123,19 +122,18 @@ void Albania()
     {
         albania = !GuiButton((Rectangle) {960, 911, 60, 25}, "Albania"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Albania") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Albania")
-            {
-                albania = false;
-                break;
-            }
-        }  
+            albania = false;
+            hideTravelFunction = true;
+        }
     }
     else if (!albania)
     {
-        // if (!hideTravelFunction && albania == false)
-        //     travel();
+        if (hideTravelFunction == false && albania == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Albania") == visitedCountries.end())
         {
@@ -152,19 +150,18 @@ void Turkey()
     {
         turkey = !GuiButton((Rectangle) { 1279, 916, 50, 25}, "Turkey"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Turkey") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Turkey")
-            {
-                turkey = false;
-                break;
-            }
-        }   
+            turkey = false;
+            hideTravelFunction = true;
+        }
     }
     else if (!turkey)
     {
-        // if (!hideTravelFunction && turkey == false)
-        //     travel();
+        if (hideTravelFunction == false && turkey == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Turkey") == visitedCountries.end())
         {
@@ -181,19 +178,18 @@ void Montenegro()
     {
         montenegro = !GuiButton((Rectangle) { 925, 873, 70, 25}, "Montenegro"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Montenegro") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Montenegro")
-            {
-                montenegro = false;
-                break;
-            }
-        } 
+            montenegro = false;
+            hideTravelFunction = true;
+        }
     }
     else if (!montenegro)
     {
-        // if (!hideTravelFunction && montenegro == false)
-        //     travel();
+        if (hideTravelFunction == false && montenegro == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Montenegro") == visitedCountries.end())
         {
@@ -210,19 +206,18 @@ void Kosovo()
     {
         kosovo = !GuiButton((Rectangle) { 997, 875, 50, 25}, "Kosovo"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Kosovo") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Kosovo")
-            {
-                kosovo = false;
-                break;
-            }
-        } 
+            kosovo = false;
+            hideTravelFunction = true;
+        }
     }
     else if (!kosovo)
     {
-        // if (!hideTravelFunction && kosovo == false)
-        //     travel();
+        if (hideTravelFunction == false && kosovo == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Kosovo") == visitedCountries.end())
         {
@@ -239,19 +234,18 @@ void Bosnia()
     {
         bosnia = !GuiButton((Rectangle) { 890, 830, 40, 25}, "B&H"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "B&H") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "B&H")
-            {
-                bosnia = false;
-                break;
-            }
-        }   
+            bosnia = false;
+            hideTravelFunction = true;
+        }
     }
     else if (!bosnia)
     {
-        // if (!hideTravelFunction && bosnia == false)
-        //     travel();
+        if (hideTravelFunction == false && bosnia == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "B&H") == visitedCountries.end())
         {
@@ -268,19 +262,18 @@ void Moldova()
     {
         moldova = !GuiButton((Rectangle) { 1165, 730, 55, 25}, "Moldova"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Moldova") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Moldova")
-            {
-                moldova = false;
-                break;
-            }
-        } 
+            moldova = false;
+            hideTravelFunction = true;
+        }
     }
     else if (!moldova)
     {
-        // if (!hideTravelFunction && moldova == false)
-        //     travel();
+        if (hideTravelFunction == false && moldova == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Moldova") == visitedCountries.end())
         {
@@ -297,19 +290,18 @@ void Ukraine()
     {
         ukraine = !GuiButton((Rectangle) { 1200, 670, 50, 25}, "Ukraine"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Ukraine") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Ukraine")
-            {
-                ukraine = false;
-                break;
-            }
+            ukraine = false;
+            hideTravelFunction = true;
         }
     }
     else if (!ukraine)
     {
-        // if (!hideTravelFunction && ukraine == false)
-        //     travel();
+        if (hideTravelFunction == false && ukraine == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Ukraine") == visitedCountries.end())
         {
@@ -324,21 +316,20 @@ void Russia()
 {
     if(russia)
     {
-          russia = !GuiButton((Rectangle) { 1250, 400, 45, 25}, "Russia"); 
+        russia = !GuiButton((Rectangle) { 1250, 400, 45, 25}, "Russia"); 
 
-        for (auto i : visitedCountries)
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Russia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
         {
-            if (i == "Russia")
-            {
-                russia = false;
-                break;
-            }
-        }   
+            russia = false;
+            hideTravelFunction = true;
+        }
     }
     else if (!russia)
     {
-        // if (!hideTravelFunction && russia == false)
-        //     travel();
+        if (hideTravelFunction == false && russia == false)
+            travel();
 
         if(std::find(visitedCountries.begin(), visitedCountries.end(), "Russia") == visitedCountries.end())
         {
@@ -351,106 +342,379 @@ void Russia()
 
 void Belarus()
 {
-    if(GuiButton((Rectangle) { 1095, 575, 50, 25}, "Belarus"))
+    if(belarus)
     {
-                            
-    }   
+        belarus = !GuiButton((Rectangle) { 1095, 575, 50, 25}, "Belarus");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Belarus") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            belarus = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!belarus)
+    {
+        if (hideTravelFunction == false && belarus == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Belarus") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Belarus");
+        }
+
+        DrawText("Belarus", 1095, 575, 20, BLACK);
+    }
 }
 
 void Finland()
 {
-    if(GuiButton((Rectangle) { 930, 370, 50, 25}, "Finland"))
+    if(finland)
     {
-                            
-    }   
+        finland = !GuiButton((Rectangle) { 930, 370, 50, 25}, "Finland");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Finland") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            finland = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!finland)
+    {
+        if (hideTravelFunction == false && finland == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Finland") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Finland");
+        }
+
+        DrawText("Finland", 930, 370, 20, BLACK);
+    }
 }
 
 void Sweden()
 {
-    if(GuiButton((Rectangle) { 765, 380, 50, 25}, "Sweden"))
+    if(sweden)
     {
-                            
-    }   
+        sweden = !GuiButton((Rectangle) { 765, 380, 50, 25}, "Sweden");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Sweden") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            sweden = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!sweden)
+    {
+        if (hideTravelFunction == false && sweden == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Sweden") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Sweden");
+        }
+
+        DrawText("Sweden", 765, 380, 20, BLACK);
+    }
 }
 
 void Norway()
 {
-    if(GuiButton((Rectangle) { 660, 420, 50, 25}, "Norway"))
+    if(norway)
     {
-         
-    }   
+        norway = !GuiButton((Rectangle) { 660, 420, 50, 25}, "Norway");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Norway") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            norway = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!norway)
+    {
+        if (hideTravelFunction == false && norway == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Norway") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Norway");
+        }
+
+        DrawText("Norway", 660, 420, 20, BLACK);
+    }
 }
 
 void Estonia()
 {
-    if(GuiButton((Rectangle) { 995, 455, 55, 25}, "Estonia"))
+    if(estonia)
     {
-                            
-    }   
+        estonia = !GuiButton((Rectangle) { 995, 455, 55, 25}, "Estonia");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Estonia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            estonia = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!estonia)
+    {
+        if (hideTravelFunction == false && estonia == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Estonia") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Estonia");
+        }
+
+        DrawText("Estonia", 995, 455, 20, BLACK);
+    }
 }
 
 void Latvia()
 {
-    if(GuiButton((Rectangle) { 1000, 490, 50, 25}, "Latvia"))
+    if(latvia)
     {
-                            
-    }   
+        latvia = !GuiButton((Rectangle) { 1000, 490, 50, 25}, "Latvia");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Latvia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            latvia = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!latvia)
+    {
+        if (hideTravelFunction == false && latvia == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Latvia") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Latvia");
+        }
+
+        DrawText("Latvia", 1000, 490, 20, BLACK);
+    }
 }
 
 void Poland()
 {
-    if(GuiButton((Rectangle) { 900, 640, 50, 25}, "Poland"))
+    if(poland)
     {
-                            
-    }   
+        poland = !GuiButton((Rectangle) { 900, 640, 50, 25}, "Poland");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Poland") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            poland = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!poland)
+    {
+        if (hideTravelFunction == false && poland == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Poland") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Poland");
+        }
+
+        DrawText("Poland", 900, 640, 20, BLACK);
+    }
 }
 
 void Slovakia()
 {
-    if(GuiButton((Rectangle) { 905, 730, 60, 25}, "Slovakia"))
+    if(slovakia)
     {
-                            
-    }   
+        slovakia = !GuiButton((Rectangle) { 905, 730, 60, 25}, "Slovakia");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Slovakia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            slovakia = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!slovakia)
+    {
+        if (hideTravelFunction == false && slovakia == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Slovakia") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Slovakia");
+        }
+
+        DrawText("Slovakia", 905, 730, 20, BLACK);
+    }
 }
 
 void Hungary()
 {
-    if(GuiButton((Rectangle) { 915, 768, 60, 25}, "Hungary"))
+    if(hungary)
     {
-                            
-    }   
+        hungary = !GuiButton((Rectangle) { 915, 768, 60, 25}, "Hungary");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Hungary") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            hungary = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!hungary)
+    {
+        if (hideTravelFunction == false && hungary == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Hungary") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Hungary");
+        }
+
+        DrawText("Hungary", 915, 768, 20, BLACK);
+    }
 }
 
 void Croatia()
 {
-    if(GuiButton((Rectangle) { 855, 805, 55, 25}, "Croatia"))
+    if(croatia)
     {
-                            
-    }      
+        croatia = !GuiButton((Rectangle) { 855, 805, 55, 25}, "Croatia");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Croatia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            croatia = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!croatia)
+    {
+        if (hideTravelFunction == false && croatia == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Croatia") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Croatia");
+        }
+
+        DrawText("Croatia", 855, 805, 20, BLACK);
+    }  
 }
 
 void Slovenia()
 {
-    if(GuiButton((Rectangle) { 790, 805, 60, 25}, "Slovenia"))
+    if(slovenia)
     {
-                            
-    }   
+        slovenia = !GuiButton((Rectangle) { 790, 805, 60, 25}, "Slovenia");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Slovenia") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            slovenia = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!slovenia)
+    {
+        if (hideTravelFunction == false && slovenia == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Slovenia") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Slovenia");
+        }
+
+        DrawText("Slovenia", 790, 805, 20, BLACK);
+    }
 }
 
 void Austria()
 {
-    if(GuiButton((Rectangle) { 800, 760, 55, 25}, "Austria"))
+    if(austria)
     {
-                            
-    }   
+        austria = !GuiButton((Rectangle) { 800, 760, 55, 25}, "Austria");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Austria") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            austria = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!austria)
+    {
+        if (hideTravelFunction == false && austria == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Austria") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Austria");
+        }
+
+        DrawText("Austria", 800, 760, 20, BLACK);
+    }
 }
 
 void Czech()
 {
-    if(GuiButton((Rectangle) { 790, 700, 80, 25}, "Czech republic"))
+    if(czech)
     {
-                            
-    }   
+        czech = !GuiButton((Rectangle) { 790, 700, 80, 25}, "Czech Republic");
+        
+        if (std::find(visitedCountries.begin(), visitedCountries.end(), "Czech Republic") == visitedCountries.end())
+            hideTravelFunction = false;
+        else
+        {
+            czech = false;
+            hideTravelFunction = true;
+        }
+    
+    }
+    else if (!czech)
+    {
+        if (hideTravelFunction == false && czech == false)
+            travel();
+
+        if(std::find(visitedCountries.begin(), visitedCountries.end(), "Czech Republic") == visitedCountries.end())
+        {
+            visitedCountries.push_back("Czech Republic");
+        }
+
+        DrawText("Czech Republic", 790, 700, 20, BLACK);
+    }
 }
 
 void Germany()
