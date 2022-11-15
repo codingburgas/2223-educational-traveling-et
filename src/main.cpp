@@ -118,8 +118,6 @@ int main()
                         
                         int numberOfCountries = visitedCountries.size();
 
-                        std::cout << "\"";
-
                         int newline = 0;
                         int counter = 1;
                         for (int i = 0; i < numberOfCountries; i++)
@@ -131,8 +129,6 @@ int main()
                                 counter++;
                             }
                         }
-
-                        std::cout << "\"\n";
 
                         showList = !GuiButton((Rectangle) { 0, 0, 200, 100}, "Hide list");
 

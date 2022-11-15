@@ -19,6 +19,18 @@ void start()
             if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
             break;
         }
+        case 3:
+        {
+            DrawText("When clicking on a country you will be asked \n how would you like to travel to that country.", 1320, 500, 15, BLACK);
+            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+            break;
+        }
+        case 4:
+        {
+            DrawText("Travelling by plane gives you 3 points, by car gives you 2 points and by train it gives you 1 point", 1320, 500, 15, BLACK);
+            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+            break;
+        }
     }
 }
 
@@ -32,7 +44,8 @@ void balance()
         int temp;
         moneyInput >> temp;
 
-        money = temp;
+        if(temp > money);
+            money = temp;
 
         moneyInput.close();
     }
@@ -181,7 +194,7 @@ void travel()
     DrawText(TextFormat("Cost: %i lv", car), 1560, 543, 25, DARKBLUE);
     DrawText(TextFormat("Cost: %i lv", train), 1560, 603, 25, DARKBLUE);
 
-    readMess = 3;
+    readMess = 5;
 
     std::ofstream moneyOutput;
     moneyOutput.open("money.txt");
