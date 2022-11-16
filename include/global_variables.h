@@ -38,7 +38,6 @@ extern int runOnlyOneTime = 0;
 extern int plane = 0;
 extern int car = 0;
 extern int train = 0;
-extern bool hideTravelFunction = true;
 
 extern std::vector<std::string> visitedCountries;
 

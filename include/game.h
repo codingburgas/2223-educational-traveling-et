@@ -27,7 +27,7 @@ void start()
         }
         case 4:
         {
-            DrawText("Travelling by plane gives you 3 points, by car gives you 2 points and by train it gives you 1 point", 1320, 500, 15, BLACK);
+            DrawText("Travelling by plane gives you 3 points, by \n car gives you 2 points and by train it gives you 1 point.", 1320, 500, 15, BLACK);
             if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
             break;
         }
@@ -44,8 +44,7 @@ void balance()
         int temp;
         moneyInput >> temp;
 
-        if(temp > money)
-            money = temp;
+        money = temp;
 
         moneyInput.close();
     }
@@ -172,8 +171,10 @@ void clearSaveFile()
     questions.close();
 }
 
-void travel()
+bool travel()
 {
+    bool hideTravelFunction = false;
+
     DrawRectangle(1350, 300, 350, 500, WHITE);
 
     DrawText("How would you like \n to travel?", 1420, 360, 25, DARKBLUE);
@@ -203,6 +204,8 @@ void travel()
     moneyOutput << money;
     
     moneyOutput.close();
+
+    return hideTravelFunction;
 }
 
 #endif
