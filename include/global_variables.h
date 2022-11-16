@@ -20,67 +20,80 @@
 #define SCREEN_HEIGHT 1080
 
 //menu variables
-extern bool play = true;
-extern bool fullscreen = true;
-extern bool exitB = true;
-extern bool showList = true;
-extern bool pause = false;
-extern bool quiz = true;
-extern bool answered = true;
-extern bool addContentToFile = true;
-extern bool haveTravel = true;
+bool play = true;
+bool fullscreen = true;
+bool exitB = true;
+bool showList = true;
+bool pause = false;
+bool quiz = true;
+bool answered = true;
+bool addContentToFile = true;
+bool haveTravel = true;
 
-extern int questionNum = 0;
-extern int questionAnsweredNum = 1;
-extern int readMess = 1;
-extern int runOnlyOneTime = 0;
+int questionNum = 0;
+int questionAnsweredNum = 1;
+int readMess = 1;
+int runOnlyOneTime = 0;
 
-extern int plane = 0;
-extern int car = 0;
-extern int train = 0;
+int plane = 0;
+int car = 0;
+int train = 0;
 
-extern std::vector<std::string> visitedCountries;
+std::vector<std::string> visitedCountries;
 
-extern int money = 300; // 300 is the start amount of the journey 
+int money = 300; // 300 is the start amount of the journey 
 
-extern bool romania = true;
-extern bool serbia = true;
-extern bool macedonia = true;
-extern bool greece = true;
-extern bool albania = true;
-extern bool turkey = true;
-extern bool montenegro = true;
-extern bool kosovo = true;
-extern bool bosnia = true;
-extern bool moldova = true;
-extern bool ukraine = true;
-extern bool russia = true;
-extern bool belarus = true;
-extern bool finland = true;
-extern bool sweden = true;
-extern bool norway = true;
-extern bool estonia = true;
-extern bool latvia = true;
-extern bool poland = true;
-extern bool slovakia = true;
-extern bool hungary = true;
-extern bool croatia = true;
-extern bool slovenia = true;
-extern bool austria = true;
-extern bool czech = true;
-extern bool germany = true;
-extern bool netherlands = true;
-extern bool denmark = true;
-extern bool belgium = true;
-extern bool switz = true;
-extern bool france = true;
-extern bool italy = true;
-extern bool spain = true;
-extern bool portugal = true;
-extern bool uk = true;
-extern bool ireland = true;
-extern bool iceland = true;
-extern bool lithuania = true;
+// number corresponding to country
 
+// romania      0
+// serbia       1
+// macedonia    2
+// greece       3
+// albania      4
+// turkey       5
+// montenegro   6
+// kosovo       7
+// bosnia       8
+// moldova      9
+// ukraine      10
+// russia       11
+// belarus      12
+// finland      13
+// sweden       14
+// norway       15
+// estonia      16
+// latvia       17
+// poland       18
+// slovakia     19
+// hungary      20
+// croatia      21
+// slovenia     22
+// austria      23
+// czech        24
+// germany      25
+// netherlands  26
+// denmark      27
+// belgium      28
+// switz        29
+// france       30
+// italy        31
+// spain        32
+// portugal     33
+// uk           34
+// ireland      35
+// iceland      36
+// lithuania    37
 
+int countryCoords[2][39] = { // coordinates of every country
+/* x */  { 1071 , 973 , 1020 , 1025 , 960 , 1279 , 925 , 997 , 830 , 1165 , 1200 , 1250 , 1095 , 930 , 765 , 660 , 995 , 1000 , 900 , 905 , 915 , 855 , 790 , 800 , 790 , 660 , 560 , 660 , 550 , 630 , 480 , 710 , 260 , 105 , 390 , 235 , 200 , 965 , 1050},
+/* y */  { 769  , 825 , 897  , 941  , 911 , 916  , 873 , 875 , 890 , 730  , 670  , 400  , 575  , 370 , 380 , 420 , 455 , 490  , 640 , 730 , 768 , 805 , 805 , 760 , 700 , 690 , 640 , 550 , 690 , 790 , 777 , 860 , 930 , 920 , 620 , 585 , 250 , 545 , 860 }
+};
+
+bool countriesBool[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
+bool countriesTravelFunction[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+
+char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "Albania", "Turkey", "Montenegro", "Kosovo", "Bosnia", "Moldova", "Ukraine", "Russia", "Belarus", "Finland", "Sweden", "Norway", "Estonia", "Latvia", "Poland", "Slovakia", "Hungary", "Croatia", "Slovenia", "Austria", "Czech Republic", "Germany", "Netherlands", "Denmark", "Belgium", "Switzerland", "France", "Italy", "Spain", "Portugal", "United Kingdom", "Ireland", "Iceland", "Lithuania" };
+
+int countryButtonSize[38] = { };
 #endif
