@@ -76,7 +76,7 @@ void countries()
         fileContent = buffer.str();
 
         int length = 1;
-        for (int i = 1; i < fileContent.length(); i++)
+        for (size_t i = 1; i < fileContent.length(); i++)
         {
             if (fileContent[i] == ' ')
                 length++;
@@ -186,7 +186,7 @@ bool travel()
         train = rand() % 61 + 50;
     }
 
-    haveTravel = false;    
+    haveTravel = false;
 
     if (GuiButton((Rectangle) { 1405, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; hideTravelFunction = true;}
     else if (GuiButton((Rectangle) { 1405, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; hideTravelFunction = true;}
@@ -206,6 +206,33 @@ bool travel()
     moneyOutput.close();
 
     return hideTravelFunction;
+}
+
+void travelAnimation(int &travelPos, float toCountryX, float toCountryY, int lastCountryI, Texture2D transport)
+{
+    float fromCountryX = countryCoords[0][lastCountryI];
+    float fromCountryY = countryCoords[1][lastCountryI];
+
+    float distanceX = toCountryX - fromCountryX;
+    float distanceY = toCountryY - fromCountryY;
+
+    // frames taken to move transport texture
+    int steps = 90; 
+
+    // slowly move transport texture from countryA to countryB
+    fromCountryX += travelPos * distanceX / steps;
+    fromCountryY += travelPos * distanceY / steps;   
+    
+    // draw plane until frames end
+    if (travelPos < steps)
+    {
+        ++travelPos; 
+        DrawTexture(transport, fromCountryX, fromCountryY, WHITE);
+    }
+    else
+    {
+        lastVisited = currentCountry;
+    }
 }
 
 #endif

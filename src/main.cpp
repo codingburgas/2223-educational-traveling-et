@@ -3,8 +3,6 @@
 #include "../include/global_variables.h"
 #include "../include/questions.h"
 
-std::vector<std::string> visitedCountries;
-
 int main()
 {
     srand(time(NULL));
@@ -14,6 +12,10 @@ int main()
     Image image = LoadImage("../res/europemap.png");     // Loaded in CPU memory (RAM)
     Texture texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(image);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM 
+
+    Image transportImage = LoadImage("../res/plane.png");
+    Texture transportTexture = LoadTextureFromImage(transportImage);
+    UnloadImage(transportImage);
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -72,44 +74,8 @@ int main()
                     DrawText(TextFormat("Your balance: %i lv", money), SCREEN_WIDTH / 2.0f - 310, 0, 50, DARKBLUE);
 
                     // Functionality for all countries
-                    Romania();
-                    Serbia();
-                    Macedonia();
-                    Greece();
-                    Albania();
-                    Turkey();
-                    Montenegro();
-                    Kosovo();
-                    Bosnia();
-                    Moldova();
-                    Ukraine();
-                    Russia();
-                    Belarus();
-                    Finland();
-                    Sweden();
-                    Norway();
-                    Estonia();
-                    Latvia();
-                    Poland();
-                    Slovakia();
-                    Hungary();
-                    Croatia();
-                    Slovenia();
-                    Austria();
-                    Czech();
-                    Germany();
-                    Netherlands();
-                    Denmark();
-                    Belgium();
-                    Switz();
-                    France();
-                    Italy();
-                    Spain();
-                    Portugal();
-                    UK();
-                    Ireland();
-                    Iceland();
-                    Lithuania();
+                    for (int i = 0; i < 38; i++)
+                        callCountry(travelPos, countriesBool[i], countriesNames[i], countriesTravelFunction[i], countryCoords[0][i], countryCoords[1][i], i, transportTexture);
 
                     if(showList)
                     {
@@ -164,34 +130,11 @@ int main()
                             DrawText(TextFormat("%s", question.c_str()), 415, 400, 25, DARKBLUE);
                             DrawText(TextFormat("%i/20", questionAnsweredNum), 415, 740, 25, DARKBLUE);
 
-                            if (answer1 == true)
-                            {
-                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                            }
-                            else if (answer2 == true)
-                            {
-                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                            }
-                            else if (answer3 == true)
-                            {
-                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                            }
-                            else if (answer4 == true)
-                            {
-                                if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { quiz = true; answered = true; questionAnsweredNum++;}
-                                else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { money += 100; quiz = true; answered = true; questionAnsweredNum++;}
-                            }                            
+                               
+                            if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 470, 150, 50}, answer1str.c_str())) { if (answer1) {money += 100;} quiz = true; answered = true; questionAnsweredNum++;}
+                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 530, 150, 50}, answer2str.c_str())) { if (answer2) {money += 100;} quiz = true; answered = true; questionAnsweredNum++;}
+                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 590, 150, 50}, answer3str.c_str())) { if (answer3) {money += 100;} quiz = true; answered = true; questionAnsweredNum++;}
+                            else if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 650, 150, 50}, answer4str.c_str())) { if (answer4) {money += 100;} quiz = true; answered = true; questionAnsweredNum++;}                       
                         }
                     }
 

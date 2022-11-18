@@ -84,16 +84,19 @@ int money = 300; // 300 is the start amount of the journey
 // iceland      36
 // lithuania    37
 
-int countryCoords[2][39] = { // coordinates of every country
-/* x */  { 1071 , 973 , 1020 , 1025 , 960 , 1279 , 925 , 997 , 830 , 1165 , 1200 , 1250 , 1095 , 930 , 765 , 660 , 995 , 1000 , 900 , 905 , 915 , 855 , 790 , 800 , 790 , 660 , 560 , 660 , 550 , 630 , 480 , 710 , 260 , 105 , 390 , 235 , 200 , 965 , 1050},
-/* y */  { 769  , 825 , 897  , 941  , 911 , 916  , 873 , 875 , 890 , 730  , 670  , 400  , 575  , 370 , 380 , 420 , 455 , 490  , 640 , 730 , 768 , 805 , 805 , 760 , 700 , 690 , 640 , 550 , 690 , 790 , 777 , 860 , 930 , 920 , 620 , 585 , 250 , 545 , 860 }
+float countryCoords[2][39] = { // coordinates of every country
+/* x */  { 1071 , 973 , 1020 , 1025 , 960 , 1279 , 925 , 997 , 870 , 1165 , 1200 , 1250 , 1095 , 930 , 765 , 660 , 995 , 1000 , 900 , 905 , 915 , 855 , 790 , 800 , 790 , 660 , 560 , 660 , 550 , 630 , 480 , 710 , 260 , 105 , 390 , 235 , 200 , 965 , 1050},
+/* y */  { 769  , 825 , 897  , 941  , 911 , 916  , 873 , 875 , 845 , 730  , 670  , 400  , 575  , 370 , 380 , 420 , 455 , 490  , 640 , 730 , 768 , 805 , 805 , 760 , 700 , 690 , 640 , 550 , 690 , 790 , 777 , 860 , 930 , 920 , 620 , 585 , 250 , 545 , 860 }
 };
 
 bool countriesBool[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
 bool countriesTravelFunction[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
-char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "Albania", "Turkey", "Montenegro", "Kosovo", "Bosnia", "Moldova", "Ukraine", "Russia", "Belarus", "Finland", "Sweden", "Norway", "Estonia", "Latvia", "Poland", "Slovakia", "Hungary", "Croatia", "Slovenia", "Austria", "Czech Republic", "Germany", "Netherlands", "Denmark", "Belgium", "Switzerland", "France", "Italy", "Spain", "Portugal", "United Kingdom", "Ireland", "Iceland", "Lithuania" };
+const char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "Albania", "Turkey", "Montenegro", "Kosovo", "Bosnia", "Moldova", "Ukraine", "Russia", "Belarus", "Finland", "Sweden", "Norway", "Estonia", "Latvia", "Poland", "Slovakia", "Hungary", "Croatia", "Slovenia", "Austria", "Czech Republic", "Germany", "Netherlands", "Denmark", "Belgium", "Switzerland", "France", "Italy", "Spain", "Portugal", "United Kingdom", "Ireland", "Iceland", "Lithuania" };
 
-int countryButtonSize[38] = { };
+int lastVisited = 38; // default - Bulgaria
+int currentCountry = 38; // default - Bulgaria
+int travelPos = 0;
+
 #endif
