@@ -3,316 +3,263 @@
 
 #include "global_variables.h"
 
-void Bulgaria()
-{       
-    if(GuiButton((Rectangle) { 1105, 856, 50, 25}, "Bulgaria"))
+void start()
+{
+    switch (readMess)
     {
-                            
+        case 1:
+        {
+            DrawText("You start from Bulgaria and your goal is to visit \n as many countries as you can until you run out of money", 1320, 500, 15, BLACK);
+            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+            break;
+        }
+        case 2:
+        {
+            DrawText("You start with 300 lv and to keep earning money you have to click the \n \"Quiz\" button and answer the question correctly", 1320, 500, 15, BLACK);
+            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+            break;
+        }
+        case 3:
+        {
+            DrawText("When clicking on a country you will be asked \n how would you like to travel to that country.", 1320, 500, 15, BLACK);
+            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+            break;
+        }
+        case 4:
+        {
+            DrawText("Travelling by plane gives you 3 points, by \n car gives you 2 points and by train it gives you 1 point.", 1320, 500, 15, BLACK);
+            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+            break;
+        }
     }
 }
 
-void Romania()
+void balance()
 {
-    if(GuiButton((Rectangle) { 1071, 769, 50, 25}, "Romania"))
+    std::ifstream moneyInput;
+    moneyInput.open("money.txt");
+
+    if (moneyInput.is_open())
     {
-                            
+        int temp;
+        moneyInput >> temp;
+
+        money = temp;
+
+        moneyInput.close();
+    }
+
+    int moneyFromFile = money;
+    moneyInput >> moneyFromFile;
+
+    std::ofstream moneyOutput;
+    moneyOutput.open("money.txt");
+
+    if (money < moneyFromFile)
+        moneyOutput << moneyFromFile;
+    else
+        moneyOutput << money;
+    moneyOutput.close();
+}
+
+void countries()
+{
+    std::ifstream countriesInput;
+    countriesInput.open("countries.txt");
+    if (countriesInput.is_open())
+    {
+
+        std::stringstream buffer;
+        buffer << countriesInput.rdbuf();
+
+        std::string fileContent;
+        fileContent = buffer.str();
+
+        int length = 1;
+        for (size_t i = 1; i < fileContent.length(); i++)
+        {
+            if (fileContent[i] == ' ')
+                length++;
+        }
+
+        std::string arr[50];
+        std::stringstream ssin(fileContent);
+
+        for (int i = 0; ssin.good() && i < length; ++i)
+            ssin >> arr[i];
+
+        if (runOnlyOneTime == 0)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                if (arr[i] != " ")
+                    visitedCountries.push_back(arr[i]); 
+            }
+        }
+        runOnlyOneTime++;
+
+        countriesInput.close();
+    }
+
+    int numberOfCountries = visitedCountries.size();
+
+    if (numberOfCountries > 1)
+    {
+        std::ofstream countriesOutput;
+        countriesOutput.open("countries.txt");
+        
+        for (int i = 0; i < numberOfCountries; i++)
+        {
+            countriesOutput << visitedCountries[i];
+            if (visitedCountries[i] != " ")
+                countriesOutput << " "; 
+        }
+        countriesOutput.close();
     }
 }
 
-void Serbia()
+void questionAnswered()
 {
-    if(GuiButton((Rectangle) { 973, 825, 50, 25}, "Serbia"))
+    std::ifstream questionsInput;
+    questionsInput.open("questionAnswered.txt");
+
+    if (questionsInput.is_open())
     {
-                            
-    }   
+        int temp;
+        questionsInput >> temp;
+
+        if (temp > questionAnsweredNum)
+            questionAnsweredNum = temp;
+
+        questionsInput.close();
+    }
+
+    int quetionsFromFile = questionAnsweredNum;
+    questionsInput >> quetionsFromFile;
+
+    std::ofstream quetionsOutput;
+    quetionsOutput.open("questionAnswered.txt");
+    if (questionAnsweredNum < quetionsFromFile)
+        quetionsOutput << quetionsFromFile;
+    else
+        quetionsOutput << questionAnsweredNum;
 }
 
-void Macedonia()
+void clearSaveFile()
 {
-    if(GuiButton((Rectangle) { 1020, 897, 65, 25}, "Macedonia"))
-    {
-                            
-    }      
+    std::fstream money;
+    money.open("money.txt", std::ofstream::out | std::ofstream::trunc);
+
+    std::fstream countries;
+    countries.open("countries.txt", std::ofstream::out | std::ofstream::trunc);
+    
+    std::fstream questions;
+    questions.open("questionAnswered.txt", std::ofstream::out | std::ofstream::trunc);
+
+    money.clear();
+    countries.clear();
+    questions.clear();
+
+    if (money.is_open())
+        money << "300";     
+
+    if (questions.is_open())
+        questions << "1";
+        
+    money.close();
+    countries.close();
+    questions.close();
 }
 
-void Greece()
+void travelAnimation(float toCountryX, float toCountryY, int lastCountryI, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
 {
-    if(GuiButton((Rectangle) { 1025, 941, 50, 25}, "Greece"))
+    if (travelType == 0)
+       return;
+
+    // save current country
+    float fromCountryX = countryCoords[0][lastCountryI];
+    float fromCountryY = countryCoords[1][lastCountryI];
+
+    // find distance between both countries
+    float distanceX = toCountryX - fromCountryX;
+    float distanceY = toCountryY - fromCountryY;
+
+    // frames taken to move transport texture
+    int steps;
+
+    // to determine how fast transport moves
+    float fullDistance = distanceX + distanceY; 
+    
+    if (fullDistance < 100) steps = 60;
+    else if (fullDistance < 250) steps = 120;
+    else if (fullDistance < 500) steps = 160;
+    else steps = 200;
+
+
+
+    // slowly move transport texture from countryA to countryB
+    fromCountryX += travelPos * distanceX / steps;
+    fromCountryY += travelPos * distanceY / steps;   
+
+    // save coordinates in vector for use in car and train travel
+    Vector2 position = { fromCountryX, fromCountryY };
+        
+    // draw transport until frames end
+    if (travelPos < steps)
     {
-                            
-    }      
+        ++travelPos; 
+        if (travelType == 1)      // draw plane
+            DrawTextureRec(plane, planeSize, position, WHITE);
+        else if (travelType == 2) // draw only the car texture from car_and_train.png
+            DrawTextureRec(carAndTrain, carSize, position, WHITE);
+        else if (travelType == 3) // draw only the train texture from car_and_train.png
+            DrawTextureRec(carAndTrain, trainSize, position, WHITE);
+    }
+    else
+    {
+        lastVisited = currentCountry;
+        travelPos = 0;
+        travelType = 0;
+    }
 }
 
-void Albania()
+bool travel(float x, float y, int lastVisited, Texture2D planeTex, Texture2D carAndTrainTex)
 {
-    if(GuiButton((Rectangle) { 960, 911, 60, 25}, "Albania"))
-    {
-                            
-    }      
-}
+    // used to save which button has been pressed so that transport animation can be fully finished
+ 
+    bool hideTravelFunction = false;
 
-void Turkey()
-{
-    if(GuiButton((Rectangle) { 1279, 916, 50, 25}, "Turkey"))
-    {
-                            
-    }      
-}
+    DrawRectangle(1350, 300, 350, 500, WHITE);
 
-void Montenegro()
-{
-    if(GuiButton((Rectangle) { 925, 873, 70, 25}, "Montenegro"))
-    {
-                            
-    }       
-}
+    DrawText("How would you like \n to travel?", 1420, 360, 25, DARKBLUE);
 
-void Kosovo()
-{
-    if(GuiButton((Rectangle) { 997, 875, 50, 25}, "Kosovo"))
+    if (haveTravel)
     {
-                            
-    }   
-}
+        plane = rand() % 131 + 100;
+        car = rand() % 81 + 50;
+        train = rand() % 61 + 50;
+    }
 
-void Bosnia()
-{
-    if(GuiButton((Rectangle) { 890, 830, 40, 25}, "B & H"))
-    {
-                            
-    }       
-}
+    haveTravel = false;
 
-void Moldova()
-{
-    if(GuiButton((Rectangle) { 1165, 730, 55, 25}, "Moldova"))
-    {
-                            
-    }   
-}
+    if (GuiButton((Rectangle) { 1405, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; hideTravelFunction = true; travelType = 1; }
+    else if (GuiButton((Rectangle) { 1405, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; hideTravelFunction = true; travelType = 2; }
+    else if (GuiButton((Rectangle) { 1405, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true; hideTravelFunction = true; travelType = 3; }
 
-void Ukraine()
-{
-    if(GuiButton((Rectangle) { 1200, 670, 50, 25}, "Ukraine"))
-    {
-                            
-    }   
-}
+    DrawText(TextFormat("Cost: %i lv", plane), 1560, 483, 25, DARKBLUE);
+    DrawText(TextFormat("Cost: %i lv", car), 1560, 543, 25, DARKBLUE);
+    DrawText(TextFormat("Cost: %i lv", train), 1560, 603, 25, DARKBLUE);
 
-void Russia()
-{
-    if(GuiButton((Rectangle) { 1250, 400, 45, 25}, "Russia"))
-    {
-                            
-    }   
-}
+    readMess = 5;
 
-void Belarus()
-{
-    if(GuiButton((Rectangle) { 1095, 575, 50, 25}, "Belarus"))
-    {
-                            
-    }   
-}
+    std::ofstream moneyOutput;
+    moneyOutput.open("money.txt");
 
-void Finland()
-{
-    if(GuiButton((Rectangle) { 930, 370, 50, 25}, "Finland"))
-    {
-                            
-    }   
-}
+    moneyOutput << money;
+    
+    moneyOutput.close();
 
-void Sweden()
-{
-    if(GuiButton((Rectangle) { 765, 380, 50, 25}, "Sweden"))
-    {
-                            
-    }   
-}
-
-void Norway()
-{
-    if(GuiButton((Rectangle) { 660, 420, 50, 25}, "Norway"))
-    {
-         
-    }   
-}
-
-void Estonia()
-{
-    if(GuiButton((Rectangle) { 995, 455, 55, 25}, "Estonia"))
-    {
-                            
-    }   
-}
-
-void Latvia()
-{
-    if(GuiButton((Rectangle) { 1000, 490, 50, 25}, "Latvia"))
-    {
-                            
-    }   
-}
-
-void Poland()
-{
-    if(GuiButton((Rectangle) { 900, 640, 50, 25}, "Poland"))
-    {
-                            
-    }   
-}
-
-void Slovakia()
-{
-    if(GuiButton((Rectangle) { 905, 730, 60, 25}, "Slovakia"))
-    {
-                            
-    }   
-}
-
-void Hungary()
-{
-    if(GuiButton((Rectangle) { 915, 768, 60, 25}, "Hungary"))
-    {
-                            
-    }   
-}
-
-void Croatia()
-{
-    if(GuiButton((Rectangle) { 855, 805, 55, 25}, "Croatia"))
-    {
-                            
-    }      
-}
-
-void Slovenia()
-{
-    if(GuiButton((Rectangle) { 790, 805, 60, 25}, "Slovenia"))
-    {
-                            
-    }   
-}
-
-void Austria()
-{
-    if(GuiButton((Rectangle) { 800, 760, 55, 25}, "Austria"))
-    {
-                            
-    }   
-}
-
-void Czech()
-{
-    if(GuiButton((Rectangle) { 790, 700, 80, 25}, "Czech republic"))
-    {
-                            
-    }   
-}
-
-void Germany()
-{
-    if(GuiButton((Rectangle) { 660, 690, 50, 25}, "Germany"))
-    {
-                            
-    }   
-}
-
-void Netherlands()
-{
-    if(GuiButton((Rectangle) { 560, 640, 70, 25}, "Netherlands"))
-    {
-                            
-    }   
-}
-
-void Denmark()
-{
-    if(GuiButton((Rectangle) { 660, 550, 55, 25}, "Denmark"))
-    {
-                            
-    }   
-}
-
-void Belgium()
-{
-    if(GuiButton((Rectangle) { 550, 690, 55, 25}, "Belgium"))
-    {
-                            
-    }   
-}
-
-void Switz()
-{
-    if(GuiButton((Rectangle) { 630, 790, 60, 25}, "Switzerland"))
-    {
-                            
-    }   
-}
-
-void France()
-{
-    if(GuiButton((Rectangle) { 480, 777, 50, 25}, "France"))
-    {
-                            
-    }   
-}
-
-void Italy()
-{
-    if(GuiButton((Rectangle) { 710, 860, 45, 25}, "Italy"))
-    {
-                            
-    }   
-}
-
-void Spain()
-{
-    if(GuiButton((Rectangle) { 260, 930, 45, 25}, "Spain"))
-    {
-                            
-    }   
-}
-
-void Portugal()
-{
-    if(GuiButton((Rectangle) { 105, 920, 55, 25}, "Portugal"))
-    {
-                            
-    }   
-}
-
-void UK()
-{
-    if(GuiButton((Rectangle) { 390, 620, 50, 25}, "England"))
-    {
-                            
-    }   
-}
-
-void Ireland()
-{
-    if(GuiButton((Rectangle) { 235, 585, 50, 25}, "Ireland"))
-    {
-                            
-    }   
-}
-
-void Iceland()
-{
-    if(GuiButton((Rectangle) { 200, 250, 50, 25}, "Iceland"))
-    {
-                            
-    }   
-}
-
-void Lithuania()
-{
-    if(GuiButton((Rectangle) { 965, 545, 50, 25}, "Lithuania"))
-    {
-                            
-    }   
+    return hideTravelFunction;
 }
 
 #endif
