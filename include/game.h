@@ -171,8 +171,62 @@ void clearSaveFile()
     questions.close();
 }
 
-bool travel()
+void travelAnimation(float toCountryX, float toCountryY, int lastCountryI, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
 {
+    if (travelType == 0)
+       return;
+
+    // save current country
+    float fromCountryX = countryCoords[0][lastCountryI];
+    float fromCountryY = countryCoords[1][lastCountryI];
+
+    // find distance between both countries
+    float distanceX = toCountryX - fromCountryX;
+    float distanceY = toCountryY - fromCountryY;
+
+    // frames taken to move transport texture
+    int steps;
+
+    // to determine how fast transport moves
+    float fullDistance = distanceX + distanceY; 
+    
+    if (fullDistance < 100) steps = 60;
+    else if (fullDistance < 250) steps = 120;
+    else if (fullDistance < 500) steps = 160;
+    else steps = 200;
+
+
+
+    // slowly move transport texture from countryA to countryB
+    fromCountryX += travelPos * distanceX / steps;
+    fromCountryY += travelPos * distanceY / steps;   
+
+    // save coordinates in vector for use in car and train travel
+    Vector2 position = { fromCountryX, fromCountryY };
+        
+    // draw transport until frames end
+    if (travelPos < steps)
+    {
+        ++travelPos; 
+        if (travelType == 1)      // draw plane
+            DrawTextureRec(plane, planeSize, position, WHITE);
+        else if (travelType == 2) // draw only the car texture from car_and_train.png
+            DrawTextureRec(carAndTrain, carSize, position, WHITE);
+        else if (travelType == 3) // draw only the train texture from car_and_train.png
+            DrawTextureRec(carAndTrain, trainSize, position, WHITE);
+    }
+    else
+    {
+        lastVisited = currentCountry;
+        travelPos = 0;
+        travelType = 0;
+    }
+}
+
+bool travel(float x, float y, int lastVisited, Texture2D planeTex, Texture2D carAndTrainTex)
+{
+    // used to save which button has been pressed so that transport animation can be fully finished
+ 
     bool hideTravelFunction = false;
 
     DrawRectangle(1350, 300, 350, 500, WHITE);
@@ -188,9 +242,9 @@ bool travel()
 
     haveTravel = false;
 
-    if (GuiButton((Rectangle) { 1405, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; hideTravelFunction = true;}
-    else if (GuiButton((Rectangle) { 1405, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; hideTravelFunction = true;}
-    else if (GuiButton((Rectangle) { 1405, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true; hideTravelFunction = true;}
+    if (GuiButton((Rectangle) { 1405, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; hideTravelFunction = true; travelType = 1; }
+    else if (GuiButton((Rectangle) { 1405, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; hideTravelFunction = true; travelType = 2; }
+    else if (GuiButton((Rectangle) { 1405, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true; hideTravelFunction = true; travelType = 3; }
 
     DrawText(TextFormat("Cost: %i lv", plane), 1560, 483, 25, DARKBLUE);
     DrawText(TextFormat("Cost: %i lv", car), 1560, 543, 25, DARKBLUE);
@@ -206,33 +260,6 @@ bool travel()
     moneyOutput.close();
 
     return hideTravelFunction;
-}
-
-void travelAnimation(int &travelPos, float toCountryX, float toCountryY, int lastCountryI, Texture2D transport)
-{
-    float fromCountryX = countryCoords[0][lastCountryI];
-    float fromCountryY = countryCoords[1][lastCountryI];
-
-    float distanceX = toCountryX - fromCountryX;
-    float distanceY = toCountryY - fromCountryY;
-
-    // frames taken to move transport texture
-    int steps = 90; 
-
-    // slowly move transport texture from countryA to countryB
-    fromCountryX += travelPos * distanceX / steps;
-    fromCountryY += travelPos * distanceY / steps;   
-    
-    // draw plane until frames end
-    if (travelPos < steps)
-    {
-        ++travelPos; 
-        DrawTexture(transport, fromCountryX, fromCountryY, WHITE);
-    }
-    else
-    {
-        lastVisited = currentCountry;
-    }
 }
 
 #endif

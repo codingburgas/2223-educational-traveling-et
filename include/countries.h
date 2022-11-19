@@ -3,9 +3,9 @@
 
 #include "global_variables.h"
 
-void callCountry(int &travelPos, bool &countryBool, const char* countryName, bool &countryTravel, float x, float y, int thisCountry, Texture2D transport)
+void callCountry(bool &countryBool, const char* countryName, bool &countryTravel, float x, float y, int thisCountry, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
 {
-    int boxSize;
+    float boxSize;
 
     switch (thisCountry)
     {
@@ -45,16 +45,16 @@ void callCountry(int &travelPos, bool &countryBool, const char* countryName, boo
         {
             visitedCountries.push_back(countryName);
 
-            travelPos = 0;
             currentCountry = thisCountry;
         }
-        else if (countryTravel == false && countryBool == false)
+        else if (countryBool == false)
         {
             if (currentCountry == thisCountry)
             {
-                countryTravel = travel(); 
+               travelAnimation(x, y, lastVisited, plane, carAndTrain, carSize, trainSize, planeSize);
 
-                travelAnimation(travelPos, x, y, lastVisited, transport);
+               if (countryTravel == false)
+                   countryTravel = travel(x, y, lastVisited, plane, carAndTrain); 
             }
         }
 

@@ -98,5 +98,6 @@ const char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "
 int lastVisited = 38; // default - Bulgaria
 int currentCountry = 38; // default - Bulgaria
 int travelPos = 0;
+int travelType = 0;
 
 #endif

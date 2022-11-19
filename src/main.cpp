@@ -13,9 +13,17 @@ int main()
     Texture texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(image);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM 
 
-    Image transportImage = LoadImage("../res/plane.png");
-    Texture transportTexture = LoadTextureFromImage(transportImage);
-    UnloadImage(transportImage);
+    Image planeImage = LoadImage("../res/plane.png");
+    Texture planeTexture = LoadTextureFromImage(planeImage);
+    UnloadImage(planeImage);
+
+    Rectangle trainInImage = { 0.0f, 0.0f, 100, 40 };
+    Rectangle carInImage = { 0.0f, 40, 100, 40 };
+    Rectangle planeInImage = { 0.0f, 0.0f, 100, 40 };
+
+    Image carAndTrainImage = LoadImage("../res/car_and_train.png");
+    Texture carAndTrainTexture = LoadTextureFromImage(carAndTrainImage);
+    UnloadImage(carAndTrainImage);
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -75,7 +83,7 @@ int main()
 
                     // Functionality for all countries
                     for (int i = 0; i < 38; i++)
-                        callCountry(travelPos, countriesBool[i], countriesNames[i], countriesTravelFunction[i], countryCoords[0][i], countryCoords[1][i], i, transportTexture);
+                        callCountry(countriesBool[i], countriesNames[i], countriesTravelFunction[i], countryCoords[0][i], countryCoords[1][i], i, planeTexture, carAndTrainTexture, carInImage, trainInImage, planeInImage);
 
                     if(showList)
                     {
