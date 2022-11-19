@@ -44,7 +44,8 @@ void balance()
         int temp;
         moneyInput >> temp;
 
-        money = temp;
+        if (temp > money)
+            money = temp;
 
         moneyInput.close();
     }
@@ -185,35 +186,45 @@ void travelAnimation(float toCountryX, float toCountryY, int lastCountryI, Textu
     float distanceY = toCountryY - fromCountryY;
 
     // frames taken to move transport texture
-    int steps;
-
-    // to determine how fast transport moves
-    float fullDistance = distanceX + distanceY; 
-    
-    if (fullDistance < 100) steps = 60;
-    else if (fullDistance < 250) steps = 120;
-    else if (fullDistance < 500) steps = 160;
-    else steps = 200;
-
-
+    int steps = 90;
 
     // slowly move transport texture from countryA to countryB
     fromCountryX += travelPos * distanceX / steps;
     fromCountryY += travelPos * distanceY / steps;   
 
-    // save coordinates in vector for use in car and train travel
-    Vector2 position = { fromCountryX, fromCountryY };
-        
+    // save coordinates in rectangle that can be rotated
+    Rectangle position = { fromCountryX, fromCountryY, 100, 40 };
+
+    // center of rectangle
+    Vector2 origin = { 50, 20 };
+
+    // amount of rotation
+    int rotation = atan2(distanceY, distanceX) * 180 / PI;
+    if (distanceX < 0)
+         rotation += 180;
+    else
+    {
+        planeSize.x += planeSize.width;
+        planeSize.width = -planeSize.width;
+
+        carSize.x += carSize.width;
+        carSize.width = -carSize.width;
+
+        trainSize.x += trainSize.width;
+        trainSize.width = -trainSize.width;
+    }
+
     // draw transport until frames end
     if (travelPos < steps)
     {
         ++travelPos; 
-        if (travelType == 1)      // draw plane
-            DrawTextureRec(plane, planeSize, position, WHITE);
+
+        if (travelType == 1)      // draw plane from plane.png
+            {DrawTexturePro(plane, planeSize, position, origin, rotation, WHITE); std::cout << rotation << " ";}
         else if (travelType == 2) // draw only the car texture from car_and_train.png
-            DrawTextureRec(carAndTrain, carSize, position, WHITE);
+            DrawTexturePro(carAndTrain, carSize, position, origin, rotation, WHITE);
         else if (travelType == 3) // draw only the train texture from car_and_train.png
-            DrawTextureRec(carAndTrain, trainSize, position, WHITE);
+            DrawTexturePro(carAndTrain, trainSize, position, origin, rotation, WHITE);
     }
     else
     {
@@ -223,10 +234,8 @@ void travelAnimation(float toCountryX, float toCountryY, int lastCountryI, Textu
     }
 }
 
-bool travel(float x, float y, int lastVisited, Texture2D planeTex, Texture2D carAndTrainTex)
+bool travel()
 {
-    // used to save which button has been pressed so that transport animation can be fully finished
- 
     bool hideTravelFunction = false;
 
     DrawRectangle(1350, 300, 350, 500, WHITE);

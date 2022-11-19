@@ -97,7 +97,11 @@ const char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "
 
 int lastVisited = 38; // default - Bulgaria
 int currentCountry = 38; // default - Bulgaria
-int travelPos = 0;
+
+// amount of frames that have passed
+int travelPos = 0; 
+
+// save which button has been pressed so that transport animation can be fully finished
 int travelType = 0;
 
 #endif

@@ -54,11 +54,11 @@ void callCountry(bool &countryBool, const char* countryName, bool &countryTravel
                travelAnimation(x, y, lastVisited, plane, carAndTrain, carSize, trainSize, planeSize);
 
                if (countryTravel == false)
-                   countryTravel = travel(x, y, lastVisited, plane, carAndTrain); 
+                   countryTravel = travel(); 
             }
         }
 
-        DrawText(countryName, x, y, 20, BLACK);
+        DrawText(countryName, x, y, 15, BLACK);
     }
 }
 

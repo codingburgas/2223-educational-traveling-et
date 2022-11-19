@@ -17,13 +17,14 @@ int main()
     Texture planeTexture = LoadTextureFromImage(planeImage);
     UnloadImage(planeImage);
 
-    Rectangle trainInImage = { 0.0f, 0.0f, 100, 40 };
-    Rectangle carInImage = { 0.0f, 40, 100, 40 };
-    Rectangle planeInImage = { 0.0f, 0.0f, 100, 40 };
-
     Image carAndTrainImage = LoadImage("../res/car_and_train.png");
     Texture carAndTrainTexture = LoadTextureFromImage(carAndTrainImage);
     UnloadImage(carAndTrainImage);
+
+    // where in image certain texture is located
+    Rectangle trainInImage = { 0.0f, 0.0f, 100, 40 };
+    Rectangle carInImage = { 0.0f, 40.0f, 100, 40 };
+    Rectangle planeInImage = { 0.0f, 0.0f, 100, 40 };
 
     SetTargetFPS(60);
     //--------------------------------------------------------------------------------------
@@ -98,7 +99,7 @@ int main()
                         {
                             if (visitedCountries[i] != "")
                             {    
-                                DrawText(TextFormat("%i. %s", counter, visitedCountries[i].c_str()), 0, 120 + newline, 25, DARKBLUE);
+                                DrawText(TextFormat("%i. %s", counter, visitedCountries[i].c_str()), 0, 120 + newline, 20, DARKBLUE);
                                 newline += 25;
                                 counter++;
                             }
