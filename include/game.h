@@ -9,25 +9,25 @@ void start()
     {
         case 1:
         {
-            DrawText("You start from Bulgaria and your goal is to visit \n as many countries as you can until you run out of money", 1320, 500, 15, BLACK);
+            DrawText("You start from Bulgaria and your goal is to visit \n as many countries as you can until you run out of money", 1320, 500, 19, BLACK);
             if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
             break;
         }
         case 2:
         {
-            DrawText("You start with 300 lv and to keep earning money you have to click the \n \"Quiz\" button and answer the question correctly", 1320, 500, 15, BLACK);
+            DrawText("You start with 300 lv and to keep earning money you have to click the \n \"Quiz\" button and answer the question correctly", 1320, 500, 19, BLACK);
             if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
             break;
         }
         case 3:
         {
-            DrawText("When clicking on a country you will be asked \n how would you like to travel to that country.", 1320, 500, 15, BLACK);
+            DrawText("When clicking on a country you will be asked \n how would you like to travel to that country.", 1320, 500, 19, BLACK);
             if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
             break;
         }
         case 4:
         {
-            DrawText("Travelling by plane gives you 3 points, by \n car gives you 2 points and by train it gives you 1 point.", 1320, 500, 15, BLACK);
+            DrawText("Travelling by plane gives you 3 points, by \n car gives you 2 points and by train it gives you 1 point.", 1320, 500, 19, BLACK);
             if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
             break;
         }

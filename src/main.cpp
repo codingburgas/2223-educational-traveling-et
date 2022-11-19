@@ -3,11 +3,17 @@
 #include "../include/global_variables.h"
 #include "../include/questions.h"
 
+//Header file for custom style of button
+#include "../include/button.h"
+
 int main()
 {
     srand(time(NULL));
     SetConfigFlags(FLAG_WINDOW_RESIZABLE);
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Educational Travelers");
+
+    //Calling the custom style of button
+    GuiLoadStyleButton();
 
     Image image = LoadImage("../res/europemap.png");     // Loaded in CPU memory (RAM)
     Texture texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
@@ -39,6 +45,8 @@ int main()
 
             if (play) 
             {
+                GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
+
                 if (GuiButton((Rectangle) { 1720, 0, 200, 100}, "Delete data from save files"))
                 {
                     clearSaveFile();
@@ -68,6 +76,7 @@ int main()
             }
             else if (!play)
             { 
+                GuiSetStyle(DEFAULT, TEXT_SIZE, 10);
                 balance();
                 countries();
                 questionAnswered();
@@ -88,7 +97,6 @@ int main()
 
                     if(showList)
                     {
-
                         DrawText("Visited countries", 0, 100, 20, DARKBLUE);
                         
                         int numberOfCountries = visitedCountries.size();
@@ -105,17 +113,23 @@ int main()
                             }
                         }
 
+                        GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
                         showList = !GuiButton((Rectangle) { 0, 0, 200, 100}, "Hide list");
+                        GuiSetStyle(DEFAULT, TEXT_SIZE, 10);
 
                     }
                     else if (!showList)
                     {
+                        GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
                         showList = GuiButton((Rectangle) { 0, 0, 200, 100}, "Show list");
+                        GuiSetStyle(DEFAULT, TEXT_SIZE, 10);
                     }
 
                     if(quiz)
                     {
+                        GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
                         quiz = !GuiButton((Rectangle) {1720, 980, 200, 100}, "Quiz");
+                        GuiSetStyle(DEFAULT, TEXT_SIZE, 10);
                         if (questionAnsweredNum == 20)
                             quiz = false;
                     }
@@ -147,10 +161,14 @@ int main()
                         }
                     }
 
+                    GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
                     pause = GuiButton((Rectangle) { 1720, 0, 200, 100}, "Options");
+                    GuiSetStyle(DEFAULT, TEXT_SIZE, 10);
                 }
                 else if (pause)
                 {
+                    GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
+
                     pause = !GuiButton((Rectangle) { 1720, 0, 200, 100}, "Options");
 
                     if (GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 420, 200, 100}, "Fullscreen"))

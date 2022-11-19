@@ -58,7 +58,7 @@ void callCountry(bool &countryBool, const char* countryName, bool &countryTravel
             }
         }
 
-        DrawText(countryName, x, y, 15, BLACK);
+        DrawText(countryName, x, y, 20, DARKGREEN);
     }
 }
 
