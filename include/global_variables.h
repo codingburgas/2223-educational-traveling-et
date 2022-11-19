@@ -93,9 +93,11 @@ bool countriesBool[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 
 bool countriesTravelFunction[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
-const char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "Albania", "Turkey", "Montenegro", "Kosovo", "Bosnia", "Moldova", "Ukraine", "Russia", "Belarus", "Finland", "Sweden", "Norway", "Estonia", "Latvia", "Poland", "Slovakia", "Hungary", "Croatia", "Slovenia", "Austria", "Czech Republic", "Germany", "Netherlands", "Denmark", "Belgium", "Switzerland", "France", "Italy", "Spain", "Portugal", "United Kingdom", "Ireland", "Iceland", "Lithuania" };
+bool drawCountry[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
-int lastVisited = 38; // default - Bulgaria
+const char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "Albania", "Turkey", "Montenegro", "Kosovo", "Bosnia", "Moldova", "Ukraine", "Russia", "Belarus", "Finland", "Sweden", "Norway", "Estonia", "Latvia", "Poland", "Slovakia", "Hungary", "Croatia", "Slovenia", "Austria", "Czech Republic", "Germany", "Netherlands", "Denmark", "Belgium", "Switzerland", "France", "Italy", "Spain", "Portugal", "United_Kingdom", "Ireland", "Iceland", "Lithuania" };
+
+unsigned int lastVisited = 38; // default - Bulgaria
 int currentCountry = 38; // default - Bulgaria
 
 // amount of frames that have passed

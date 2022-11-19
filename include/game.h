@@ -172,14 +172,14 @@ void clearSaveFile()
     questions.close();
 }
 
-void travelAnimation(float toCountryX, float toCountryY, int lastCountryI, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
+void travelAnimation(float toCountryX, float toCountryY, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
 {
     if (travelType == 0)
        return;
 
     // save current country
-    float fromCountryX = countryCoords[0][lastCountryI];
-    float fromCountryY = countryCoords[1][lastCountryI];
+    float fromCountryX = countryCoords[0][lastVisited];
+    float fromCountryY = countryCoords[1][lastVisited];
 
     // find distance between both countries
     float distanceX = toCountryX - fromCountryX;
@@ -220,7 +220,7 @@ void travelAnimation(float toCountryX, float toCountryY, int lastCountryI, Textu
         ++travelPos; 
 
         if (travelType == 1)      // draw plane from plane.png
-            {DrawTexturePro(plane, planeSize, position, origin, rotation, WHITE); std::cout << rotation << " ";}
+            {DrawTexturePro(plane, planeSize, position, origin, rotation, WHITE);}
         else if (travelType == 2) // draw only the car texture from car_and_train.png
             DrawTexturePro(carAndTrain, carSize, position, origin, rotation, WHITE);
         else if (travelType == 3) // draw only the train texture from car_and_train.png
@@ -237,10 +237,12 @@ void travelAnimation(float toCountryX, float toCountryY, int lastCountryI, Textu
 bool travel()
 {
     bool hideTravelFunction = false;
+    
+    Rectangle travelPopUp = { 1350, 300, 400, 450 };
+    DrawRectangle(1350, 300, 400, 450, Color{ 252, 190, 104, 200} );
+    DrawRectangleLinesEx(travelPopUp, 5, BLACK);
 
-    DrawRectangle(1350, 300, 350, 500, WHITE);
-
-    DrawText("How would you like \n to travel?", 1420, 360, 25, DARKBLUE);
+    DrawText("How would you like \n to travel?", 1420, 360, 25, BLACK);
 
     if (haveTravel)
     {
@@ -251,13 +253,13 @@ bool travel()
 
     haveTravel = false;
 
-    if (GuiButton((Rectangle) { 1405, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; hideTravelFunction = true; travelType = 1; }
-    else if (GuiButton((Rectangle) { 1405, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; hideTravelFunction = true; travelType = 2; }
-    else if (GuiButton((Rectangle) { 1405, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true; hideTravelFunction = true; travelType = 3; }
+    if (GuiButton((Rectangle) { 1400, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; hideTravelFunction = true; travelType = 1; }
+    else if (GuiButton((Rectangle) { 1400, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; hideTravelFunction = true; travelType = 2; }
+    else if (GuiButton((Rectangle) { 1400, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true; hideTravelFunction = true; travelType = 3; }
 
-    DrawText(TextFormat("Cost: %i lv", plane), 1560, 483, 25, DARKBLUE);
-    DrawText(TextFormat("Cost: %i lv", car), 1560, 543, 25, DARKBLUE);
-    DrawText(TextFormat("Cost: %i lv", train), 1560, 603, 25, DARKBLUE);
+    DrawText(TextFormat("Cost: %i lv", plane), 1560, 483, 25, BLACK);
+    DrawText(TextFormat("Cost: %i lv", car), 1560, 543, 25, BLACK);
+    DrawText(TextFormat("Cost: %i lv", train), 1560, 603, 25, BLACK);
 
     readMess = 5;
 

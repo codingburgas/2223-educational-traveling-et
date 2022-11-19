@@ -100,7 +100,7 @@ int main()
                             if (visitedCountries[i] != "")
                             {    
                                 DrawText(TextFormat("%i. %s", counter, visitedCountries[i].c_str()), 0, 120 + newline, 20, DARKBLUE);
-                                newline += 25;
+                                newline += 20;
                                 counter++;
                             }
                         }

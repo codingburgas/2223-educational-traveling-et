@@ -51,7 +51,7 @@ void callCountry(bool &countryBool, const char* countryName, bool &countryTravel
         {
             if (currentCountry == thisCountry)
             {
-               travelAnimation(x, y, lastVisited, plane, carAndTrain, carSize, trainSize, planeSize);
+               travelAnimation(x, y, plane, carAndTrain, carSize, trainSize, planeSize);
 
                if (countryTravel == false)
                    countryTravel = travel(); 
