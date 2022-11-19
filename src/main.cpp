@@ -15,6 +15,10 @@ int main()
     //Calling the custom style of button
     GuiLoadStyleButton();
 
+    // fix button realinement when entering game
+    ToggleFullscreen();
+    ToggleFullscreen();
+
     Image image = LoadImage("../res/europemap.png");     // Loaded in CPU memory (RAM)
     Texture texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(image);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM 
