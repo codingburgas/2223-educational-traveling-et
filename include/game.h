@@ -37,6 +37,47 @@ void start()
     }
 }
 
+std::string convertToString(char* a)
+{
+    std::string s(a);
+ 
+    return s;
+}
+
+void clearSaveFile()
+{
+    std::fstream money;
+    money.open("money.txt", std::ofstream::out | std::ofstream::trunc);
+
+    std::fstream countries;
+    countries.open("countries.txt", std::ofstream::out | std::ofstream::trunc);
+    
+    std::fstream questions;
+    questions.open("questionAnswered.txt", std::ofstream::out | std::ofstream::trunc);
+
+    std::fstream score;
+    score.open("score.txt", std::ofstream::out | std::ofstream::trunc);
+    
+    money.clear();
+    countries.clear();
+    questions.clear();
+    score.clear();
+
+    if (money.is_open())
+        money << "300";     
+
+    if (questions.is_open())
+        questions << "1";
+
+    if (score.is_open())
+        score << "0";
+        
+    money.close();
+    countries.close();
+    questions.close();
+    score.close();
+}
+
 void finish(Font titleFonts)
 {
     // indicate to callCountries to stop drawing buttons
@@ -113,6 +154,21 @@ void finish(Font titleFonts)
                 DrawText("_", (int)textBox.x + 8 + MeasureText(name, 40), (int)textBox.y + 12, 40, RAYWHITE);
         }
     }
+
+    if (IsKeyPressed(KEY_ENTER))
+    {
+        ToggleFullscreen();
+        std::string scoreStr = std::to_string(score);
+        std::string nameStr = convertToString(name);
+        std::string url = "\"https://www.educational-travelers.tk/inc/addscore.php?name=";
+        url.append(nameStr);
+        url.append("&score=");
+        url.append(scoreStr);
+
+        system(("start \"\" " + url +"\"").c_str());
+        clearSaveFile();
+        CloseWindow();
+    }    
 }
 
 void balance()
@@ -247,39 +303,6 @@ void questionAnswered()
         quetionsOutput << questionAnsweredNum;
 }
 
-void clearSaveFile()
-{
-    std::fstream money;
-    money.open("money.txt", std::ofstream::out | std::ofstream::trunc);
-
-    std::fstream countries;
-    countries.open("countries.txt", std::ofstream::out | std::ofstream::trunc);
-    
-    std::fstream questions;
-    questions.open("questionAnswered.txt", std::ofstream::out | std::ofstream::trunc);
-
-    std::fstream score;
-    score.open("score.txt", std::ofstream::out | std::ofstream::trunc);
-    
-    money.clear();
-    countries.clear();
-    questions.clear();
-    score.clear();
-
-    if (money.is_open())
-        money << "300";     
-
-    if (questions.is_open())
-        questions << "1";
-
-    if (score.is_open())
-        score << "0";
-        
-    money.close();
-    countries.close();
-    questions.close();
-    score.close();
-}
 
 void travelAnimation(float toCountryX, float toCountryY, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
 {
@@ -388,5 +411,7 @@ bool travel(Font titleFonts)
 
     return hideTravelFunction;
 }
+
+
 
 #endif

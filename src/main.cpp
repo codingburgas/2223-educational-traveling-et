@@ -20,9 +20,13 @@ int main()
 
     Font titleFonts = LoadFont("../res/alagard.png");
 
-    Image image = LoadImage("../res/europemap.png");     // Loaded in CPU memory (RAM)
-    Texture texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
-    UnloadImage(image);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM 
+    Image background = LoadImage("../res/Background_Main_Menu_2.png");
+    Texture backgroundTexture = LoadTextureFromImage(background);
+    UnloadImage(background);
+
+    Image map = LoadImage("../res/europemap.png");
+    Texture texture = LoadTextureFromImage(map);
+    UnloadImage(map);
 
     Image planeImage = LoadImage("../res/plane.png");
     Texture planeTexture = LoadTextureFromImage(planeImage);
@@ -45,8 +49,8 @@ int main()
     {
 
         BeginDrawing();     
-         
-            ClearBackground(RAYWHITE);
+
+        DrawTexture(backgroundTexture, SCREEN_WIDTH/2 - backgroundTexture.width/2, SCREEN_HEIGHT/2 - backgroundTexture.height/2, WHITE);
 
             if (play) 
             {
@@ -57,7 +61,7 @@ int main()
                     clearSaveFile();
                 }
 
-                DrawText("Educational Travelers", SCREEN_WIDTH / 2.0f - 310, 270, 50, DARKBLUE);
+                DrawText("Educational Travelers", SCREEN_WIDTH / 2.0f - 310, 270, 50, MAROON);
                 
                 play = !GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 405, 200, 100}, "Play");
                 pause = false;
@@ -208,7 +212,10 @@ int main()
         SetExitKey(KEY_NULL);
         //----------------------------------------------------------------------------------
     }
+    UnloadTexture(backgroundTexture);
     UnloadTexture(texture);
+    UnloadTexture(planeTexture);
+    UnloadTexture(carAndTrainTexture);
 
     CloseWindow();          // Close window and OpenGL context
 
