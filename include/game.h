@@ -63,6 +63,25 @@ void balance()
     moneyOutput.close();
 }
 
+void highscore()
+{
+    std::ifstream scoreInput;
+    scoreInput.open("score.txt");
+
+    int scoreFromFile = score;
+    scoreInput >> scoreFromFile;
+
+    std::ofstream scoreOutput;
+    scoreOutput.open("score.txt");
+
+    if (score < scoreFromFile)
+        scoreOutput << scoreFromFile;
+    else
+        scoreOutput << score;
+    scoreOutput.close();
+    scoreInput.close();
+}
+
 void countries()
 {
     std::ifstream countriesInput;
@@ -157,19 +176,27 @@ void clearSaveFile()
     std::fstream questions;
     questions.open("questionAnswered.txt", std::ofstream::out | std::ofstream::trunc);
 
+    std::fstream score;
+    money.open("score.txt", std::ofstream::out | std::ofstream::trunc);
+    
     money.clear();
     countries.clear();
     questions.clear();
+    score.clear();
 
     if (money.is_open())
         money << "300";     
 
     if (questions.is_open())
         questions << "1";
+
+    if (score.is_open())
+        score << "1";
         
     money.close();
     countries.close();
     questions.close();
+    score.close();
 }
 
 void travelAnimation(float toCountryX, float toCountryY, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
@@ -253,9 +280,9 @@ bool travel()
 
     haveTravel = false;
 
-    if (GuiButton((Rectangle) { 1400, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; hideTravelFunction = true; travelType = 1; }
-    else if (GuiButton((Rectangle) { 1400, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; hideTravelFunction = true; travelType = 2; }
-    else if (GuiButton((Rectangle) { 1400, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true; hideTravelFunction = true; travelType = 3; }
+    if (GuiButton((Rectangle) { 1400, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; score += 3; hideTravelFunction = true; travelType = 1; }
+    else if (GuiButton((Rectangle) { 1400, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; score += 2; hideTravelFunction = true; travelType = 2; }
+    else if (GuiButton((Rectangle) { 1400, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true;score += 1; hideTravelFunction = true; travelType = 3; }
 
     DrawText(TextFormat("Cost: %i lv", plane), 1560, 483, 25, BLACK);
     DrawText(TextFormat("Cost: %i lv", car), 1560, 543, 25, BLACK);

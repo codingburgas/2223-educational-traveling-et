@@ -17,7 +17,6 @@ int main()
 
     // fix button realinement when entering game
     ToggleFullscreen();
-    ToggleFullscreen();
 
     Image image = LoadImage("../res/europemap.png");     // Loaded in CPU memory (RAM)
     Texture texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
@@ -51,7 +50,7 @@ int main()
             {
                 GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
 
-                if (GuiButton((Rectangle) { 1720, 0, 200, 100}, "Delete data from save files"))
+                if (GuiButton((Rectangle) { 1620, 0, 300, 100}, "Delete data from save files"))
                 {
                     clearSaveFile();
                 }
@@ -84,6 +83,9 @@ int main()
                 balance();
                 countries();
                 questionAnswered();
+                
+                while (noEnd)
+                    highscore();
 
                 if (!pause)
                 {
@@ -131,6 +133,7 @@ int main()
 
                     if(quiz)
                     {
+                        DrawText(TextFormat("Your score: %i", score), 1750, 960, 20, DARKBLUE);
                         GuiSetStyle(DEFAULT, TEXT_SIZE, 20);
                         quiz = !GuiButton((Rectangle) {1720, 980, 200, 100}, "Quiz");
                         GuiSetStyle(DEFAULT, TEXT_SIZE, 10);
