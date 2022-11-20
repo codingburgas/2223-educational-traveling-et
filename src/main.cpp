@@ -60,8 +60,6 @@ int main()
                 {
                     clearSaveFile();
                 }
-
-                DrawText("Educational Travelers", SCREEN_WIDTH / 2.0f - 310, 270, 50, MAROON);
                 
                 play = !GuiButton((Rectangle) { SCREEN_WIDTH / 2.0f - 224 / 2.0f, 405, 200, 100}, "Play");
                 pause = false;
