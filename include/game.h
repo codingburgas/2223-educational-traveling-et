@@ -181,7 +181,8 @@ void balance()
         int temp;
         moneyInput >> temp;
 
-        money = temp;
+        if (temp > money)
+            money = temp;
 
         moneyInput.close();
     }
