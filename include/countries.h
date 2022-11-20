@@ -3,62 +3,66 @@
 
 #include "global_variables.h"
 
-void callCountry(bool &countryBool, const char* countryName, bool &countryTravel, float x, float y, int thisCountry, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
+void callCountry(bool &countryBool, const char* countryName, bool &countryTravel, float x, float y, int thisCountry, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize, Font titleFonts)
 {
-    float boxSize;
 
-    switch (thisCountry)
+    if (finishGame == false)
     {
-        case 2:
-        case 6:
-        case 26:
-        case 29:
-            boxSize = 69;
-            break;
-        case 24:
-        case 34:
-            boxSize = 85;
-            break;
-        default:
-            boxSize = 50;
-    }
+        float boxSize;
 
-    if(countryBool)
-    {
-        countryBool = !GuiButton((Rectangle) { x, y, boxSize, 25}, countryName);
-        
-        if (std::find(visitedCountries.begin(), visitedCountries.end(), countryName) == visitedCountries.end()) 
+        switch (thisCountry)
         {
-            countryTravel = false; 
+            case 2:
+            case 6:
+            case 26:
+            case 29:
+                boxSize = 69;
+                break;
+            case 24:
+            case 34:
+                boxSize = 85;
+                break;
+            default:
+                boxSize = 50;
         }
-        else
-        {
-            countryBool = false;
-            countryTravel = true;
-        }
-    
-    }
-    else if (!countryBool)
-    {
- 
-        if(std::find(visitedCountries.begin(), visitedCountries.end(), countryName) == visitedCountries.end())
-        {
-            visitedCountries.push_back(countryName);
 
-            currentCountry = thisCountry;
-        }
-        else if (countryBool == false)
+        if(countryBool)
         {
-            if (currentCountry == thisCountry)
+            countryBool = !GuiButton((Rectangle) { x, y, boxSize, 25}, countryName);
+            
+            if (std::find(visitedCountries.begin(), visitedCountries.end(), countryName) == visitedCountries.end()) 
             {
-               travelAnimation(x, y, plane, carAndTrain, carSize, trainSize, planeSize);
-
-               if (countryTravel == false)
-                   countryTravel = travel(); 
+                countryTravel = false; 
             }
+            else
+            {
+                countryBool = false;
+                countryTravel = true;
+            }
+        
         }
+        else if (!countryBool)
+        {
+    
+            if(std::find(visitedCountries.begin(), visitedCountries.end(), countryName) == visitedCountries.end())
+            {
+                visitedCountries.push_back(countryName);
 
-        DrawText(countryName, x, y, 20, DARKGREEN);
+                currentCountry = thisCountry;
+            }
+            else if (countryBool == false)
+            {
+                if (currentCountry == thisCountry)
+                {
+                travelAnimation(x, y, plane, carAndTrain, carSize, trainSize, planeSize);
+
+                if (countryTravel == false)
+                    countryTravel = travel(titleFonts); 
+                }
+            }
+
+            DrawText(countryName, x, y, 20, DARKGREEN);
+        }
     }
 }
 

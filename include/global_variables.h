@@ -35,10 +35,18 @@ int questionNum = 0;
 int questionAnsweredNum = 1;
 int readMess = 1;
 int runOnlyOneTime = 0;
+bool finishGame = 0;
 
 int plane = 0;
 int car = 0;
 int train = 0;
+
+// variables used in finish()
+int framesCounter = 0;
+int letters = 0;
+// save inputed text
+char name[11] = "\0";
+
 
 std::vector<std::string> visitedCountries;
 
@@ -96,7 +104,7 @@ bool countriesTravelFunction[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 
 bool drawCountry[38] = { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
 
-const char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "Albania", "Turkey", "Montenegro", "Kosovo", "Bosnia", "Moldova", "Ukraine", "Russia", "Belarus", "Finland", "Sweden", "Norway", "Estonia", "Latvia", "Poland", "Slovakia", "Hungary", "Croatia", "Slovenia", "Austria", "Czech Republic", "Germany", "Netherlands", "Denmark", "Belgium", "Switzerland", "France", "Italy", "Spain", "Portugal", "United_Kingdom", "Ireland", "Iceland", "Lithuania" };
+const char* countriesNames[38] = { "Romania", "Serbia", "Macedonia", "Greece", "Albania", "Turkey", "Montenegro", "Kosovo", "Bosnia", "Moldova", "Ukraine", "Russia", "Belarus", "Finland", "Sweden", "Norway", "Estonia", "Latvia", "Poland", "Slovakia", "Hungary", "Croatia", "Slovenia", "Austria", "Czech_Republic", "Germany", "Netherlands", "Denmark", "Belgium", "Switzerland", "France", "Italy", "Spain", "Portugal", "United_Kingdom", "Ireland", "Iceland", "Lithuania" };
 
 unsigned int lastVisited = 38; // default - Bulgaria
 int currentCountry = 38; // default - Bulgaria

@@ -18,6 +18,8 @@ int main()
     // fix button realinement when entering game
     ToggleFullscreen();
 
+    Font titleFonts = LoadFont("../res/alagard.png");
+
     Image image = LoadImage("../res/europemap.png");     // Loaded in CPU memory (RAM)
     Texture texture = LoadTextureFromImage(image);          // Image converted to texture, GPU memory (VRAM)
     UnloadImage(image);   // Once image has been converted to texture and uploaded to VRAM, it can be unloaded from RAM 
@@ -89,6 +91,9 @@ int main()
                 {
                     DrawTexture(texture, SCREEN_WIDTH/2 - texture.width/2, SCREEN_HEIGHT/2 - texture.height/2, WHITE);
                     
+                    if (finishGame)
+                        finish(titleFonts);
+
                     // Start scene
                     start();
 
@@ -97,7 +102,7 @@ int main()
 
                     // Functionality for all countries
                     for (int i = 0; i < 38; i++)
-                        callCountry(countriesBool[i], countriesNames[i], countriesTravelFunction[i], countryCoords[0][i], countryCoords[1][i], i, planeTexture, carAndTrainTexture, carInImage, trainInImage, planeInImage);
+                        callCountry(countriesBool[i], countriesNames[i], countriesTravelFunction[i], countryCoords[0][i], countryCoords[1][i], i, planeTexture, carAndTrainTexture, carInImage, trainInImage, planeInImage, titleFonts);
 
                     if(showList)
                     {

@@ -5,31 +5,112 @@
 
 void start()
 {
-    switch (readMess)
+    if (finishGame == false)
     {
-        case 1:
+        switch (readMess)
         {
-            DrawText("You start from Bulgaria and your goal is to visit \n as many countries as you can until you run out of money", 1320, 500, 19, BLACK);
-            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
-            break;
+            case 1:
+            {
+                DrawText("You start from Bulgaria and your goal is to visit \n as many countries as you can until you run out of money", 1320, 500, 19, BLACK);
+                if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+                break;
+            }
+            case 2:
+            {
+                DrawText("You start with 300 lv and to keep earning money you have to click the \n \"Quiz\" button and answer the question correctly", 1320, 500, 19, BLACK);
+                if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+                break;
+            }
+            case 3:
+            {
+                DrawText("When clicking on a country you will be asked \n how would you like to travel to that country.", 1320, 500, 19, BLACK);
+                if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+                break;
+            }
+            case 4:
+            {
+                DrawText("Travelling by plane gives you 3 points, by \n car gives you 2 points and by train it gives you 1 point.", 1320, 500, 19, BLACK);
+                if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
+                break;
+            }
         }
-        case 2:
+    }
+}
+
+void finish(Font titleFonts)
+{
+    // indicate to callCountries to stop drawing buttons
+    finishGame = true;
+
+    // where to draw game over pop up
+    Rectangle finishPopUp = { 460, 200, 1000, 620 };
+    DrawRectangle(460, 200, 1000, 620, Color{ 0, 211, 223, 255} );
+    DrawRectangleLinesEx(finishPopUp, 5, BLACK);
+
+    // text location
+    Vector2 textLocation1 = { 540, 400 };
+    Vector2 textLocation2 = { 530, 430 };
+
+    DrawTextEx(titleFonts, "   GAME OVER   ", textLocation1, 40, 40, BLACK);
+    DrawTextEx(titleFonts, "ENTER YOUR NAME", textLocation2, 40, 40, BLACK);
+
+    Rectangle textBox = { 850, 470, 225, 50 };
+    bool mouseOnText = false;
+
+    if (CheckCollisionPointRec(GetMousePosition(), textBox)) 
+        mouseOnText = true;
+    else 
+        mouseOnText = false;
+
+    if (mouseOnText)
+    {
+        // Set the window's cursor to the I-Beam
+        SetMouseCursor(MOUSE_CURSOR_IBEAM);
+            
+        // Get char pressed (unicode character) on the queue
+        int key = GetCharPressed();
+
+        // Check if more characters have been pressed on the same frame
+        while (key > 0)
         {
-            DrawText("You start with 300 lv and to keep earning money you have to click the \n \"Quiz\" button and answer the question correctly", 1320, 500, 19, BLACK);
-            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
-            break;
+            // NOTE: Only allow keys in range [32..125]
+            if ((key >= 32) && (key <= 125) && (letters < 10))
+            {
+                name[letters] = (char)key;
+                name[letters+1] = '\0'; // Add null terminator at the end of the string.
+                letters++;
+            }
+
+            key = GetCharPressed();  // Check next character in the queue
         }
-        case 3:
+
+        if (IsKeyPressed(KEY_BACKSPACE))
         {
-            DrawText("When clicking on a country you will be asked \n how would you like to travel to that country.", 1320, 500, 19, BLACK);
-            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
-            break;
+            letters--;
+            if (letters < 0) letters = 0;
+            name[letters] = '\0';
         }
-        case 4:
+    }
+    else SetMouseCursor(MOUSE_CURSOR_DEFAULT);
+
+    if (mouseOnText) framesCounter++;
+    else framesCounter = 0;
+
+    DrawRectangleRec(textBox, BLACK);
+    if (mouseOnText) 
+        DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, RAYWHITE);
+    else 
+        DrawRectangleLines((int)textBox.x, (int)textBox.y, (int)textBox.width, (int)textBox.height, GRAY);
+
+    DrawText(name, (int)textBox.x + 5, (int)textBox.y + 8, 40, RAYWHITE);
+
+    if (mouseOnText)
+    {
+        if (letters < 10)
         {
-            DrawText("Travelling by plane gives you 3 points, by \n car gives you 2 points and by train it gives you 1 point.", 1320, 500, 19, BLACK);
-            if (GuiButton((Rectangle) { 1520, 550, 50, 50}, "Next")) readMess++;
-            break;
+            // Draw blinking underscore char
+            if (((framesCounter/20)%2) == 0) 
+                DrawText("_", (int)textBox.x + 8 + MeasureText(name, 40), (int)textBox.y + 12, 40, RAYWHITE);
         }
     }
 }
@@ -44,8 +125,7 @@ void balance()
         int temp;
         moneyInput >> temp;
 
-        if (temp > money)
-            money = temp;
+        money = temp;
 
         moneyInput.close();
     }
@@ -68,7 +148,7 @@ void highscore()
     std::ifstream scoreInput;
     scoreInput.open("score.txt");
 
-    int scoreFromFile = score;
+    int scoreFromFile;
     scoreInput >> scoreFromFile;
 
     std::ofstream scoreOutput;
@@ -80,6 +160,8 @@ void highscore()
         scoreOutput << score;
     scoreOutput.close();
     scoreInput.close();
+
+    score = scoreFromFile;
 }
 
 void countries()
@@ -177,7 +259,7 @@ void clearSaveFile()
     questions.open("questionAnswered.txt", std::ofstream::out | std::ofstream::trunc);
 
     std::fstream score;
-    money.open("score.txt", std::ofstream::out | std::ofstream::trunc);
+    score.open("score.txt", std::ofstream::out | std::ofstream::trunc);
     
     money.clear();
     countries.clear();
@@ -191,7 +273,7 @@ void clearSaveFile()
         questions << "1";
 
     if (score.is_open())
-        score << "1";
+        score << "0";
         
     money.close();
     countries.close();
@@ -201,6 +283,7 @@ void clearSaveFile()
 
 void travelAnimation(float toCountryX, float toCountryY, Texture2D plane, Texture2D carAndTrain, Rectangle carSize, Rectangle trainSize, Rectangle planeSize)
 {
+    // wait until travel type has been chosen to run animation
     if (travelType == 0)
        return;
 
@@ -261,16 +344,10 @@ void travelAnimation(float toCountryX, float toCountryY, Texture2D plane, Textur
     }
 }
 
-bool travel()
+bool travel(Font titleFonts)
 {
     bool hideTravelFunction = false;
     
-    Rectangle travelPopUp = { 1350, 300, 400, 450 };
-    DrawRectangle(1350, 300, 400, 450, Color{ 252, 190, 104, 200} );
-    DrawRectangleLinesEx(travelPopUp, 5, BLACK);
-
-    DrawText("How would you like \n to travel?", 1420, 360, 25, BLACK);
-
     if (haveTravel)
     {
         plane = rand() % 131 + 100;
@@ -278,11 +355,23 @@ bool travel()
         train = rand() % 61 + 50;
     }
 
+    if (questionAnsweredNum >= 20 && money - plane < 0 && money - car < 0 && money - train < 0)
+    {
+        finish(titleFonts);
+        return 0;
+    }
+
+    Rectangle travelPopUp = { 1350, 300, 400, 450 };
+    DrawRectangle(1350, 300, 400, 450, Color{ 252, 190, 104, 200} );
+    DrawRectangleLinesEx(travelPopUp, 5, BLACK);
+
+    DrawText("How would you like \n to travel?", 1420, 360, 25, BLACK);
+
     haveTravel = false;
 
-    if (GuiButton((Rectangle) { 1400, 470, 150, 50}, "Travel with plane") && money - plane > 0) { money -= plane; haveTravel = true; score += 3; hideTravelFunction = true; travelType = 1; }
-    else if (GuiButton((Rectangle) { 1400, 530, 150, 50}, "Travel with car") && money - car > 0) { money -= car; haveTravel = true; score += 2; hideTravelFunction = true; travelType = 2; }
-    else if (GuiButton((Rectangle) { 1400, 590, 150, 50}, "Travel with train") && money - train > 0) { money -= train; haveTravel = true;score += 1; hideTravelFunction = true; travelType = 3; }
+    if (GuiButton((Rectangle) { 1400, 470, 150, 50}, "Travel with plane") && money - plane >= 0) { money -= plane; haveTravel = true; score += 3; hideTravelFunction = true; travelType = 1; }
+    else if (GuiButton((Rectangle) { 1400, 530, 150, 50}, "Travel with car") && money - car >= 0) { money -= car; haveTravel = true; score += 2; hideTravelFunction = true; travelType = 2; }
+    else if (GuiButton((Rectangle) { 1400, 590, 150, 50}, "Travel with train") && money - train >= 0) { money -= train; haveTravel = true;score += 1; hideTravelFunction = true; travelType = 3; }
 
     DrawText(TextFormat("Cost: %i lv", plane), 1560, 483, 25, BLACK);
     DrawText(TextFormat("Cost: %i lv", car), 1560, 543, 25, BLACK);
