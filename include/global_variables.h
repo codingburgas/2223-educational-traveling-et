@@ -29,7 +29,6 @@ bool quiz = true;
 bool answered = true;
 bool addContentToFile = true;
 bool haveTravel = true;
-bool noEnd = true;
 
 int score = 0;
 int questionNum = 0;

@@ -83,9 +83,7 @@ int main()
                 balance();
                 countries();
                 questionAnswered();
-                
-                while (noEnd)
-                    highscore();
+                highscore();
 
                 if (!pause)
                 {
