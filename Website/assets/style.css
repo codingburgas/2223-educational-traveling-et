@@ -1,0 +1,17 @@
+body {
+    background: rgb(20,202,224);
+    background: linear-gradient(90deg, rgba(20,202,224,1) 0%, rgba(212,171,46,1) 50%, rgba(255,192,0,1) 100%);
+    text-align: center;
+    font-family: Georgia, sans-serif;
+}
+
+h1 {
+  font-size: 5em;
+  letter-spacing: -2px;
+}
+
+ol {
+    font-size: 2em;
+    text-align: center;
+    list-style-position: inside;
+}

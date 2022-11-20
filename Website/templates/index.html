@@ -1,0 +1,12 @@
+{include="header.html"}
+
+<h1>Scoreboard</h1>
+
+<ol>
+{loop="$scores"}
+	<li>{$value.name} - {$value.score}</li>
+{/loop}   
+</ol> 
+
+
+{include="footer.html"}
