@@ -156,7 +156,9 @@ int main()
 
                             answered = false;
 
-                            DrawRectangle(400, 380, 1200, 400, WHITE);
+                            Rectangle quizRec = {400, 380, 1200, 400};
+                            DrawRectangle(400, 380, 1200, 400, Color{ 252, 190, 104, 200});
+                            DrawRectangleLinesEx(quizRec, 5, BLACK);
                             std::string question, answer1str, answer2str, answer3str, answer4str;
                             bool answer1, answer2, answer3, answer4;
 
